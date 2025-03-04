@@ -43,7 +43,22 @@ const App = () => {
       />
 
       {/* MAIN COMPONENT TO STORE PASSWORDS */}
-      <section className="absolute flex flex-wrap gap-[20px] bottom-0 w-full h-[560px] border-t-[0.5px] border-gray-700 p-[14px] px-[20px] overflow-y-auto">
+      <section className="absolute flex content-start flex-wrap gap-[20px] bottom-0 w-full h-[560px] border-t-[0.5px] border-gray-700 p-[14px] px-[20px] overflow-y-auto">
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
+        <PasswordComponent />
         <PasswordComponent />
         <PasswordComponent />
         <PasswordComponent />
@@ -220,7 +235,7 @@ const CategoryComponent: React.FC<CategoryComponentProp> = ({ type, categoryName
 
 const PasswordComponent = () => {
   return (
-    <div className="border-gray-400 border-[0.7px] shrink-0 rounded-[10px] p-2 w-[370px] h-[100px]">Password</div>
+    <div className="border-gray-400 bg-yellow-100s border-[0.7px] shrink-0 rounded-[10px] p-2 w-[370px] h-[100px]">Password</div>
   )
 }
 
