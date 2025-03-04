@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+.soft-scrollbar-right > * {
+  direction: ltr;
+  text-align: left;
+}
+
+.soft-scrollbar-right::-webkit-scrollbar {
+  width: 3px;
+}
+
+.soft-scrollbar-right::-webkit-scrollbar-thumb {
+  background-color: rgba(126, 177, 216, 0.4);
+  border-radius: 30px;
+}
+
+/* soft the scrollbar track */
+.soft-scrollbar-right::-webkit-scrollbar-track {
+  background: transparent;
+}
