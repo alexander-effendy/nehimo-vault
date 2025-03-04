@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "module": "NodeNext",
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "moduleResolution": "nodenext",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "vite": ["node_modules/vite"],
+      "@vitejs/plugin-react": ["node_modules/@vitejs/plugin-react"],
+      "@tailwindcss/vite": ["node_modules/@tailwindcss/vite"]
+    }
+  },
+  "include": ["vite.config.ts", "src/**/*"]
+}
