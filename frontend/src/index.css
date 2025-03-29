@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+/* For any custom header you create */
+.custom-header {
+  -webkit-app-region: drag; /* Makes this area draggable */
+  height: 40px;
+}
