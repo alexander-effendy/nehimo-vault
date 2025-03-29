@@ -7,6 +7,9 @@ import fakeCategoryData, { fakeCategoryInterface } from './data/categoryDataFake
 // importing tsx components
 import PasswordComponent from "./component/PasswordComponent";
 import CategoryComponent from "./component/CategoryComponent";
+import Header from "./component/Header";
+import CategoryList from "./component/CategoryList";
+import MainContent from "./component/MainContent";
 
 // importing CSS
 import "./App.css";
@@ -35,28 +38,41 @@ const App = () => {
   const [isLocked, setIsLocked] = useState<boolean>(false);
   const [dropDownIsOpen, setDropdownIsOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    console.log('App.tsx starting');
+  }, []);
+
   return (
     <div className="w-screen h-screen flex items-center bg-black justify-center relative overflow-hidden">
+      <Header />
+
+      <TfiLock
+        onClick={() => setIsLocked((isLocked) => !isLocked)}
+        className="z-210 hover:cursor-pointer text-white absolute size-[20px] top-5 right-5 transition-all duration-1000 hover:text-yellow-300 "
+      />
 
       {/* overlay layer that covers everything except the dropdown */}
-      {dropDownIsOpen &&       
+      {/* {dropDownIsOpen &&       
         <Overlay />
-      }
+      } */}
 
       {isLocked &&       
         <LockedOverlay />
       }
 
-      <CategoryDropDown dropDownIsOpen={dropDownIsOpen} setDropdownIsOpen={setDropdownIsOpen} />
-      <TfiLock
-        onClick={() => setIsLocked((isLocked) => !isLocked)}
-        className="z-210 hover:cursor-pointer text-white absolute size-[20px] top-5 right-5 transition-all duration-1000 hover:text-yellow-300 "
-      />
-      <section className="absolute flex flex-col gap-[20px] bottom-0 w-full h-[560px] p-[14px] px-[20px] overflow-x-hidden overflow-y-auto">
+      {/* Category List */}
+      <CategoryList />
+
+      {/* Password List */}
+      <MainContent />
+
+      {/* <CategoryDropDown dropDownIsOpen={dropDownIsOpen} setDropdownIsOpen={setDropdownIsOpen} /> */}
+      
+      {/* <section className="absolute flex flex-col gap-[20px] bottom-0 w-full h-[560px] p-[14px] px-[20px] overflow-x-hidden overflow-y-auto">
         <PasswordComponent />
         <PasswordComponent />
         <PasswordComponent />
-      </section>
+      </section> */}
     </div>
   );
 };
