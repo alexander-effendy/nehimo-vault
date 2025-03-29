@@ -1,0 +1,49 @@
+from fastapi import FastAPI, HTTPException, Depends
+from sqlalchemy.orm import Session
+from . import models, schemas, crud
+from .database import engine, SessionLocal, Base
+
+# Create database tables (for development; in production, consider migrations)
+Base.metadata.create_all(bind=engine)
+
+app = FastAPI()
+
+# Dependency for getting DB session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+# POST CATEGORIES
+@app.post("/categories/", response_model=schemas.CategoryResponse)
+def create_category(category: schemas.CategoryCreate, db: Session = Depends(get_db)):
+    return crud.create_category(db, category)
+
+# GET ALL CATEGORIES
+@app.get("/categories/", response_model=list[schemas.CategoryResponse])
+def read_categories(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    return crud.get_categories(db, skip, limit)
+
+# GET SPECIFIC CATEGORIES
+@app.get("/categories/{category_id}", response_model=schemas.CategoryResponse)
+def read_category(category_id: int, db: Session = Depends(get_db)):
+    db_category = crud.get_category(db, category_id)
+    if not db_category:
+        raise HTTPException(status_code=404, detail="Category not found")
+    return db_category
+
+# @app.put("/categories/{category_id}", response_model=schemas.CategoryResponse)
+# def update_category(category_id: int, category: schemas.CategoryCreate, db: Session = Depends(get_db)):
+#     db_category = crud.update_category(db, category_id, category)
+#     if not db_category:
+#         raise HTTPException(status_code=404, detail="Category not found")
+#     return db_category
+
+# @app.delete("/categories/{category_id}")
+# def delete_category(category_id: int, db: Session = Depends(get_db)):
+#     db_category = crud.delete_category(db, category_id)
+#     if not db_category:
+#         raise HTTPException(status_code=404, detail="Category not found")
+#     return {"message": "Category deleted successfully"}
