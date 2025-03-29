@@ -3,10 +3,30 @@ import { AiFillApple } from "react-icons/ai";
 import { GoPlus } from "react-icons/go";
 import { IoIosSearch } from "react-icons/io";
 
-
 import CategoryComponent from "./CategoryComponentNew";
 
+import { useQuery } from '@tanstack/react-query';
+
+const fetchCategories = async () => {
+  const response = await fetch('http://127.0.0.1:8000/categories/');
+  if (!response.ok) {
+    throw new Error('Network response was not ok')
+  }
+  return response.json()
+}
+
 const CategoryList = () => {
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['categories'], 
+    queryFn: fetchCategories
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching categories: {error.message}</div>;
+
+  console.log(data)
+
   return (
     <section className="flex flex-col bg-[#101010] absolute top-[40px] left-[7px] h-[680px] w-[238px] rounded-[10px] px-2">
       {/* HEADER */}

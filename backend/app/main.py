@@ -2,11 +2,20 @@ from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 from . import models, schemas, crud
 from .database import engine, SessionLocal, Base
+from fastapi.middleware.cors import CORSMiddleware
 
 # Create database tables (for development; in production, consider migrations)
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # List the allowed origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Dependency for getting DB session
 def get_db():
