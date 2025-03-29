@@ -20,15 +20,9 @@ import { AiOutlineCloud } from "react-icons/ai";
 
 // ################################################################################################## //
 
-const Overlay = () => {
-  return (
-    <div className="absolute w-full h-full z-100 bg-black opacity-90">overlay</div>
-  )
-}
-
 const LockedOverlay = () => {
   return (
-    <div className="absolute z-100 w-screen h-screen bg-black z-200 opacity-90 flex items-center justify-center">
+    <div className="absolute  w-screen h-screen bg-black z-200 flex items-center justify-center">
       <span className="text-white">The app is currently locked. Tap the lock icon to unlock it.</span>
     </div>
   )
@@ -36,19 +30,19 @@ const LockedOverlay = () => {
 
 const App = () => {
   const [isLocked, setIsLocked] = useState<boolean>(false);
-  const [dropDownIsOpen, setDropdownIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     console.log('App.tsx starting');
   }, []);
 
   return (
-    <div className="w-screen h-screen flex items-center bg-black justify-center relative overflow-hidden">
+    <div className={`w-screen h-screen flex items-center bg-black justify-center relative overflow-hidden ${isLocked && 'blur-sm'}`}>
       <Header />
 
       <TfiLock
         onClick={() => setIsLocked((isLocked) => !isLocked)}
-        className="z-210 hover:cursor-pointer text-white absolute size-[20px] top-5 right-5 transition-all duration-1000 hover:text-yellow-300 "
+        size={15}
+        className="z-230 hover:cursor-pointer text-white absolute top-3 right-3 transition-all duration-1000 hover:text-yellow-300 "
       />
 
       {/* overlay layer that covers everything except the dropdown */}

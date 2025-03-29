@@ -1,5 +1,5 @@
 const Header = () => (
-  <div className="custom-header top-0 absolute w-full z-100">
+  <div className="custom-header top-0 absolute w-[92%] z-100">
     {/* Your header content */}
   </div>
 );
