@@ -47,7 +47,7 @@ const App = () => {
         <LockedOverlay />
       }
 
-      <CategoryDropDown />
+      <CategoryDropDown dropDownIsOpen={dropDownIsOpen} setDropdownIsOpen={setDropdownIsOpen} />
       <TfiLock
         onClick={() => setIsLocked((isLocked) => !isLocked)}
         className="z-210 hover:cursor-pointer text-white absolute size-[20px] top-5 right-5 transition-all duration-1000 hover:text-yellow-300 "
@@ -63,20 +63,24 @@ const App = () => {
 
 // ################################################################################################## //
 
-const CategoryDropDown = () => {
+interface CategoryDropDownProps {
+  dropDownIsOpen: boolean;
+  setDropdownIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  const [isOpen, setIsOpen] = useState(false);
+const CategoryDropDown: React.FC<CategoryDropDownProps> = ({ dropDownIsOpen, setDropdownIsOpen }) => {
+
   const [data, setData] = useState<fakeCategoryInterface[]>(fakeCategoryData);
 
   return (
-    <section className="absolute top-5 left-4 bg-yellow-100s w-[370px] z-120">
+    <section className="absolute top-5 left-4 w-[370px] z-120">
       {/* menu button */}
-      <div onClick={() => setIsOpen((open) => !open)} className="w-[290px] hover:cursor-pointer rounded-[5px] text-white ">
+      <div onClick={() => setDropdownIsOpen((open) => !open)} className="w-[290px] hover:cursor-pointer rounded-[5px] text-white ">
         <CategoryComponent type="special" categoryName="Work" dateCreated="2023-01-01" lastEdited="2023-01-01" numberOfFile={3} icon={AiOutlineCloud} />
       </div>
       {/* menu dropdown */}
-      {isOpen && (
-        <div className="soft-scrollbar-right mt-[20px] flex flex-col gap-[20px] text-white h-[540px] overflow-y-auto overflow-x-hidden w-[380px] rounded-[7px]">
+      {dropDownIsOpen && (
+        <div className="soft-scrollbar-right mt-[20px] flex flex-col gap-[20px] text-white h-[380px] overflow-y-auto overflow-x-hidden w-[380px] rounded-[7px]">
           {data.map((item) => (
             <CategoryComponent categoryName={item.categoryName} dateCreated={item.dateCreated} lastEdited={item.lastEdited} numberOfFile={item.numberOfFile} icon={item.icon} />
           ))}
