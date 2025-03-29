@@ -13,11 +13,13 @@
     "start": "electron ."
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.6.1",
     "@tailwindcss/vite": "^4.0.9",
     "@tanstack/react-query": "^5.70.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0",
     "tailwindcss": "^4.0.9"
   },
   "devDependencies": {

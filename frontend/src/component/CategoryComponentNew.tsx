@@ -1,20 +1,29 @@
-import { IconType } from "react-icons";
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from "@/store/store";
 
-interface CategoryComponentProp {
-  id: number,
-  functionalName: string;
-  categoryType: string;
-  icon: IconType;
-  lastEdited: string;
-  dateCreated: string;
-}
+import { setSelectedCategory } from '../features/category/CategorySlice';
+
+import { CategoryComponentProp } from "@/features/category/CategorySlice";
 
 import catmeme from '../assets/catmeme.png';
+import { useEffect } from "react";
 
-const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, functionalName, categoryType, icon, lastEdited, dateCreated }) => {
+const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type, icon, last_edited, date_created }) => {
+  const dispatch = useDispatch();
+  const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
+
+  const handleCategoryClick = (id: number) => {
+    dispatch(setSelectedCategory(id));
+  }
+
+  useEffect(() => {
+    console.log('selected category updated: ' + selectedCategory);
+  }, [selectedCategory])
+
   return (
     <div 
       key={id}
+      onClick={() => handleCategoryClick(id)}
       className="flex h-[52px] rounded-[5px] hover:bg-stone-900 p-1 hover:cursor-pointer"
     >
       {/* later icon */}
@@ -24,8 +33,8 @@ const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, functionalName,
 
       {/* name and type */}
       <section className="flex flex-col items-start flex-grow p-1 px-2">
-        <span className="text-[13px] text-white">{functionalName}</span>
-        <span className="text-[12px] text-gray-500">{categoryType}</span>
+        <span className="text-[13px] text-white">{name}</span>
+        <span className="text-[12px] text-gray-500">{type}</span>
       </section>
 
     </div>
