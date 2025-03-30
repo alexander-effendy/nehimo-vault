@@ -40,7 +40,7 @@ const CategoryContent = () => {
     return (
       <section className="pl-4 border-[1px]ss border-white flex flex-col gap-2 flex-grow justify-end">
         <span className="text-gray-200 text-[12px]">{type}</span>
-        <span className="pl-[17px] text-white font-bold text-[65px] transform scale-x-110 leading-none pb-[5px] truncate w-[447px]">{name}</span>
+        <span className="pl-[19px] text-white font-bold text-[40px] transform scale-x-110 leading-none pb-[5px] truncate w-[447px]">{name}</span>
         <section className="flex items-center gap-[6px] leading-none">
           <span className="text-[12px] text-gray-400 font-semibold">Alexander Effendy</span>
           <div className="size-[3px] rounded-full bg-gray-400"></div>
