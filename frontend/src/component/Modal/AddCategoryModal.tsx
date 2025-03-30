@@ -4,7 +4,7 @@ import { RootState } from "@/store/store";
 import { setAddCategoryModalOpen, addCategory } from "../../features/category/CategorySlice";
 import { useState } from "react";
 
-import { addCategoryAPI } from "../../api/categoryAPI";
+import { addCategoryAPI } from "../../api/CategoryAPI";
 
 const AddCategoryModal = () => {
   const dispatch = useDispatch();

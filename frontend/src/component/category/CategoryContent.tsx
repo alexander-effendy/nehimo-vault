@@ -4,18 +4,18 @@ import { useSelector } from "react-redux";
 
 import { CategoryComponentProp } from "@/features/category/CategorySlice";
 
-import catmeme from "../assets/catmeme.png";
+import catmeme from '../../assets/catmeme.png';
+import { formatCreatedDate } from "../../utils/date";
 
-import { formatCreatedDate } from "../utils/date";
+import PasswordList from "../password/PasswordList";
 
-const MainContent = () => {
+const CategoryContent = () => {
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
   const categories = useSelector((state: RootState) => state.category.categories);
 
   const [currentCategory, setCurrentCategory] = useState<CategoryComponentProp | null>(null);
 
   const handleLoadCategory = () => {
-    console.log(categories);
     if (categories.length !== 0) {
       if (selectedCategory) {
         setCurrentCategory(categories[selectedCategory - 1]);
@@ -27,7 +27,6 @@ const MainContent = () => {
 
   useEffect(() => {
     handleLoadCategory();
-    console.log(currentCategory);
   }, [selectedCategory, categories]);
 
   interface InfoProp {
@@ -41,7 +40,7 @@ const MainContent = () => {
     return (
       <section className="pl-4 border-[1px]ss border-white flex flex-col gap-2 flex-grow justify-end">
         <span className="text-gray-200 text-[12px]">{type}</span>
-        <span className="pl-[17px] text-white font-bold text-[65px] transform scale-x-110 leading-none pb-[5px] truncate w-[447px]">{name}</span>
+        <span className="pl-[19px] text-white font-bold text-[40px] transform scale-x-110 leading-none pb-[5px] truncate w-[447px]">{name}</span>
         <section className="flex items-center gap-[6px] leading-none">
           <span className="text-[12px] text-gray-400 font-semibold">Alexander Effendy</span>
           <div className="size-[3px] rounded-full bg-gray-400"></div>
@@ -72,9 +71,11 @@ const MainContent = () => {
           background: "linear-gradient(to bottom, #3b2a43 0%, #101010 40%, #101010 100%)",
         }}
         className="w-full h-[470px] rounded-b-[10px]"
-      ></section>
+      >
+        <PasswordList />
+      </section>
     </section>
   );
 };
 
-export default MainContent;
+export default CategoryContent;

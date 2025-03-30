@@ -1,6 +1,10 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
 
+############################################################
+######################### CATEGORY #########################
+############################################################
+
 # POST CATEGORIES
 def create_category(db: Session, category: schemas.CategoryCreate):
     print("Validated data:", category.dict())
@@ -12,7 +16,7 @@ def create_category(db: Session, category: schemas.CategoryCreate):
 
 # GET ALL CATEGORIES
 def get_categories(db: Session, skip: int = 0, limit: int = 10):
-    return db.query(models.Category).offset(skip).limit(limit).all()
+    return db.query(models.Category).all()
 
 # GET SPECIFIC CATEGORIES
 def get_category(db: Session, category_id: int):
@@ -34,3 +38,15 @@ def get_category(db: Session, category_id: int):
 #         db.delete(db_category)
 #         db.commit()
 #     return db_category
+
+############################################################
+######################### PASSWORD #########################
+############################################################
+
+# GET ALL CATEGORIES
+def get_passwords(db: Session, skip: int = 0, limit: int = 10):
+    return db.query(models.Password).offset(skip).limit(limit).all()
+
+# GET SPECIFIC CATEGORIES
+def get_passwords_by_category(db: Session, category_id: int):
+    return db.query(models.Password).filter(models.Password.categoryid == category_id).all()

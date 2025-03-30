@@ -22,10 +22,22 @@ declare module 'react-icons/lu' {
   export const LuLibraryBig: React.FC<IconBaseProps>;
 }
 
-declare module 'react-icons/ai' {
+declare module 'react-icons/lu' {
   import * as React from 'react';
   import { IconBaseProps } from 'react-icons';
-  export const AiFillApple: React.FC<IconBaseProps>;
+  export const LuLibraryBig: React.FC<IconBaseProps>;
+}
+
+declare module 'react-icons/fi' {
+  import * as React from 'react';
+  import { IconBaseProps } from 'react-icons';
+  export const FiEdit: React.FC<IconBaseProps>;
+}
+
+declare module 'react-icons/fa6' {
+  import * as React from 'react';
+  import { IconBaseProps } from 'react-icons';
+  export const FaListUl: React.FC<IconBaseProps>;
 }
 
 declare module 'react-icons/ai' {
@@ -74,4 +86,16 @@ declare module 'react-icons/io' {
   import * as React from 'react';
   import { IconBaseProps } from 'react-icons';
   export const IoIosSearch: React.FC<IconBaseProps>;
+}
+
+declare module 'react-icons/io5' {
+  import * as React from 'react';
+  import { IconBaseProps } from 'react-icons';
+  export const IoCalendarNumberOutline: React.FC<IconBaseProps>;
+}
+
+declare module 'react-icons/pi' {
+  import * as React from 'react';
+  import { IconBaseProps } from 'react-icons';
+  export const PiDotsThreeOutlineLight: React.FC<IconBaseProps>;
 }
