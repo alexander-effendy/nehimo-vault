@@ -87,3 +87,15 @@ declare module 'react-icons/io' {
   import { IconBaseProps } from 'react-icons';
   export const IoIosSearch: React.FC<IconBaseProps>;
 }
+
+declare module 'react-icons/io5' {
+  import * as React from 'react';
+  import { IconBaseProps } from 'react-icons';
+  export const IoCalendarNumberOutline: React.FC<IconBaseProps>;
+}
+
+declare module 'react-icons/pi' {
+  import * as React from 'react';
+  import { IconBaseProps } from 'react-icons';
+  export const PiDotsThreeOutlineLight: React.FC<IconBaseProps>;
+}

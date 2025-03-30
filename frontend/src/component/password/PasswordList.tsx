@@ -18,6 +18,8 @@ import { setPasswords } from "../../features/category/PasswordSlice";
 import { PasswordComponentProp } from "../../features/category/PasswordSlice";
 import PasswordComponent from "./PasswordComponent";
 import { FaListUl } from "react-icons/fa6";
+import { IoCalendarNumberOutline } from "react-icons/io5";
+import { IoColorPaletteOutline } from "react-icons/io5";
 
 const PasswordList = () => {
   const dispatch = useDispatch();
@@ -52,6 +54,9 @@ const PasswordList = () => {
           <button className="text-gray-400 hover:text-white hover:cursor-pointer">
             <RiDeleteBin6Line size={25} />
           </button>
+          <button className="text-gray-400 hover:text-white hover:cursor-pointer">
+            <IoColorPaletteOutline size={25} />
+          </button>
         </section>
         <section className="flex my-auto gap-4">
           <button className="text-gray-400 hover:text-white hover:cursor-pointer">
@@ -69,8 +74,8 @@ const PasswordList = () => {
         <span>#</span>
         <span className="ml-[20px]">Usage</span>
         <span className="ml-[117px]">Username</span>
-        <span className="ml-[126px]">Password</span>
-        <span className="ml-[124px]">Date created</span>
+        <span className="ml-[108px]">Password</span>
+        <span className="ml-[135px]"><IoCalendarNumberOutline size={16} /></span>
       </section>
       {/* map the list of passwords here (within a password list) */}
       <section className="flex flex-col mt-3">
