@@ -14,11 +14,15 @@ export interface CategoryComponentProp {
 interface CategoryState {
   categories: CategoryComponentProp[];
   selectedCategoryId: number | null;
+  searchCategory: string | null;
+  addCategoryModalOpen: boolean;
 }
 
 const initialState: CategoryState = {
   categories: [],
-  selectedCategoryId: null
+  selectedCategoryId: null,
+  searchCategory: null,
+  addCategoryModalOpen: false,
 };
 
 const categorySlice = createSlice({
@@ -33,9 +37,20 @@ const categorySlice = createSlice({
     },
     setSelectedCategory(state, action) {
       state.selectedCategoryId = action.payload;
+    },
+    setSearchCategory(state, action) {
+      state.searchCategory = action.payload;
+    },
+    setAddCategoryModalOpen(state, action) {
+      state.addCategoryModalOpen = action.payload;
     }
   },
 });
 
-export const { setCategories, addCategory, setSelectedCategory } = categorySlice.actions;
+export const { 
+  setCategories, 
+  addCategory, 
+  setSelectedCategory, 
+  setSearchCategory, 
+  setAddCategoryModalOpen } = categorySlice.actions;
 export default categorySlice.reducer;

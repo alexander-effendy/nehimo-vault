@@ -13,6 +13,7 @@ import "./App.css";
 
 // importing icons
 import { TfiLock } from "react-icons/tfi";
+import AddCategoryModal from "./component/Modal/AddCategoryModal";
 
 // ################################################################################################## //
 
@@ -34,16 +35,15 @@ const App = () => {
   return (
     <div className={`w-screen h-screen flex items-center bg-black justify-center relative overflow-hidden ${isLocked && 'blur-sm'}`}>
       <Header />
-
       <TfiLock
         onClick={() => setIsLocked((isLocked) => !isLocked)}
         size={15}
         className="z-230 hover:cursor-pointer text-white absolute top-3 right-3 transition-all duration-1000 hover:text-yellow-300 "
       />
 
-      {isLocked &&       
-        <LockedOverlay />
-      }
+      <AddCategoryModal />
+
+      {isLocked && <LockedOverlay />}
 
       {/* Category List */}
       <CategoryList />

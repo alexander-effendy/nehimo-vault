@@ -24,7 +24,7 @@ const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type, ico
     <div 
       key={id}
       onClick={() => handleCategoryClick(id)}
-      className="flex h-[52px] rounded-[5px] hover:bg-stone-900 p-1 hover:cursor-pointer"
+      className={`${selectedCategory === id ? 'bg-stone-800' : 'hover:bg-stone-900'} flex h-[52px] rounded-[5px] p-1 hover:cursor-pointer`}
     >
       {/* later icon */}
       <img className="size-[45px] rounded-[5px] border-[1px] border-gray-500"

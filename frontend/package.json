@@ -13,6 +13,7 @@
     "start": "electron ."
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "@reduxjs/toolkit": "^2.6.1",
     "@tailwindcss/vite": "^4.0.9",
     "@tanstack/react-query": "^5.70.0",
