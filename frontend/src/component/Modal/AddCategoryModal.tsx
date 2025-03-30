@@ -54,14 +54,14 @@ const AddCategoryModal = () => {
       <Dialog open={addCategoryModalOpen} onClose={() => handleModalOpen(false)} className="relative z-280">
         <div className="fixed inset-0 flex w-screen items-center justify-center pb-15">
           <DialogPanel className="max-w-lg border border-gray-500 bg-black text-white p-5 rounded-[10px] w-[600px]">
-            <DialogTitle className="font-bold mb-1">Add Category</DialogTitle>
+            <DialogTitle className="font-bold mb-2">Add Category</DialogTitle>
             {showWarning && <span className="leading-none text-red-500 text-[13px]">Inputs cannot be empty!</span>}
             <section className="flex flex-col gap-3 text-[14px]">
-              <input onChange={(e) => setCategoryNameInput(e.target.value)} className="focus:outline-none bg-stone-800 p-1 px-2 rounded-[5px]" placeholder="insert category name" />
-              <input onChange={(e) => setCategoryTypeInput(e.target.value)} className="focus:outline-none bg-stone-800 p-1 px-2 rounded-[5px]" placeholder="insert category type" />
+              <input onChange={(e) => setCategoryNameInput(e.target.value)} className="focus:outline-none border-gray-600 border-[1px] bg-black p-2 rounded-[5px]" placeholder="insert category name" />
+              <input onChange={(e) => setCategoryTypeInput(e.target.value)} className="focus:outline-none border-gray-600 border-[1px] bg-black p-2 rounded-[5px]" placeholder="insert category type" />
             </section>
 
-            <div className="flex gap-4 justify-end mt-3">
+            <div className="flex gap-4 justify-end mt-5">
               <button className="text-[13px] border px-2 py-1 rounded-[5px]" onClick={() => handleModalOpen(false)}>
                 Cancel
               </button>
