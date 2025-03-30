@@ -11,11 +11,11 @@ const SearchBar = () => {
   }
 
   return (
-    <div className="bg-yellow-100s flex px-2 py-1 rounded-[5px] hover:cursor-pointer hover:bg-stone-900 transition-all duration-500 rounded-[7px] p-1">
-      <IoIosSearch size={20} className="flex my-auto text-white" />
+    <div className="relative flex rounded-[5px] p-1">
+      <IoIosSearch size={20} className="flex my-auto text-white absolute top-[10px] left-2" />
       <input 
         onChange={(e) => handleChangeReduxSearchBar(e.target.value)}
-        className="flex flex-grow px-2 text-gray-200 text-[12px] py-1 focus:outline-none"
+        className="hover:cursor-pointer transition-all duration-500 w-full h-[30px] rounded-[7px] flex flex-grow pl-7 text-gray-200 text-[12px] py-1 focus:outline-none focus:bg-stone-900 "
       />
     </div>
   );
