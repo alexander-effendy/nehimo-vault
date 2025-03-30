@@ -58,6 +58,11 @@ const CategoryList = () => {
     }
   }, [searchCategory])
 
+  useEffect(() => {
+    console.log('categories change detected')
+    setLocalCategoryList(categories)
+  }, [categories])
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching categories: {error.message}</div>;
 

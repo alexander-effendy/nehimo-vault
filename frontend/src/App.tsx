@@ -1,6 +1,7 @@
 // importing BASICs
 import { useEffect, useState } from "react";
-
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 // importing fake data
 
 // importing tsx components
@@ -19,14 +20,23 @@ import AddCategoryModal from "./component/Modal/AddCategoryModal";
 
 const LockedOverlay = () => {
   return (
-    <div className="absolute  w-screen h-screen bg-black z-200 flex items-center justify-center">
+    <div className="absolute w-screen h-screen bg-black z-200 flex items-center justify-center">
       <span className="text-white">The app is currently locked. Tap the lock icon to unlock it.</span>
+    </div>
+  )
+}
+
+const ModalOverlay = () => {
+  return (
+    <div className="absolute w-screen h-screen bg-black opacity-80 z-200 flex items-center justify-center">
+    
     </div>
   )
 }
 
 const App = () => {
   const [isLocked, setIsLocked] = useState<boolean>(false);
+  const addCategoryModalOpen = useSelector((state: RootState) => state.category.addCategoryModalOpen);
 
   useEffect(() => {
     console.log('App.tsx starting');
@@ -42,7 +52,7 @@ const App = () => {
       />
 
       <AddCategoryModal />
-
+      {addCategoryModalOpen && <ModalOverlay />}
       {isLocked && <LockedOverlay />}
 
       {/* Category List */}
