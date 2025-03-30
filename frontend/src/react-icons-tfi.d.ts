@@ -99,3 +99,15 @@ declare module 'react-icons/pi' {
   import { IconBaseProps } from 'react-icons';
   export const PiDotsThreeOutlineLight: React.FC<IconBaseProps>;
 }
+
+declare module 'react-icons/md' {
+  import * as React from 'react';
+  import { IconBaseProps } from 'react-icons';
+  export const MdContentCopy: React.FC<IconBaseProps>;
+}
+
+declare module 'react-icons/io5' {
+  import * as React from 'react';
+  import { IconBaseProps } from 'react-icons';
+  export const IoColorPaletteOutline: React.FC<IconBaseProps>;
+}

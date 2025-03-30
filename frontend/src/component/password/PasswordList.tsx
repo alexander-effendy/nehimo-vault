@@ -43,6 +43,9 @@ const PasswordList = () => {
       dispatch(setPasswords(data));
     }
   }, [isError, data]);
+  
+  if (isLoading) return <div>Retrieving password loading</div>
+  if (error) return <div>Retrieving password list error</div>
 
   return (
     <div className="flex flex-col">
