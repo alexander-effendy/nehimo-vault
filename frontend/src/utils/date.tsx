@@ -3,8 +3,9 @@ export const formatCreatedDate = (dateStr: string):string => {
   const createdDate = new Date(dateStr);
   const now = new Date();
 
-  const diffMs = now.getTime() - createdDate.getTime();
+  const diffMs = now.getTime() - (createdDate.getTime());
   const diffDays = diffMs / (1000 * 60 * 60 * 24);
+
 
   if (diffDays < 7) {
     const daysAgo = Math.floor(diffDays);
