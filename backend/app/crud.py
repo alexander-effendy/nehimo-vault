@@ -3,6 +3,7 @@ from . import models, schemas
 
 # POST CATEGORIES
 def create_category(db: Session, category: schemas.CategoryCreate):
+    print("Validated data:", category.dict())
     db_category = models.Category(name=category.name, type=category.type, icon=category.icon)
     db.add(db_category)
     db.commit()

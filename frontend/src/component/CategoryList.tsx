@@ -16,13 +16,8 @@ import { useDispatch, useSelector } from 'react-redux';
 // IMPORT REDUX SLICES
 import { setCategories } from '../features/category/CategorySlice';
 
-const fetchCategories = async () => {
-  const response = await fetch('http://127.0.0.1:8000/categories/');
-  if (!response.ok) {
-    throw new Error('Network response was not ok')
-  }
-  return response.json()
-}
+// import APIs
+import { fetchCategories } from "../api/categoryAPI";
 
 const CategoryList = () => {
   const dispatch = useDispatch();

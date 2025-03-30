@@ -5,7 +5,7 @@ from pydantic import BaseModel
 class CategoryBase(BaseModel):
     name: str
     type: str
-    icon: Optional[str] = None  # Allow icon to be None
+    icon: Optional[str] = None 
 
 class CategoryCreate(CategoryBase):
     pass
