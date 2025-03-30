@@ -4,18 +4,18 @@ import { useSelector } from "react-redux";
 
 import { CategoryComponentProp } from "@/features/category/CategorySlice";
 
-import catmeme from "../assets/catmeme.png";
+import catmeme from '../../assets/catmeme.png';
+import { formatCreatedDate } from "../../utils/date";
 
-import { formatCreatedDate } from "../utils/date";
+import PasswordList from "../password/PasswordList";
 
-const MainContent = () => {
+const CategoryContent = () => {
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
   const categories = useSelector((state: RootState) => state.category.categories);
 
   const [currentCategory, setCurrentCategory] = useState<CategoryComponentProp | null>(null);
 
   const handleLoadCategory = () => {
-    console.log(categories);
     if (categories.length !== 0) {
       if (selectedCategory) {
         setCurrentCategory(categories[selectedCategory - 1]);
@@ -27,7 +27,6 @@ const MainContent = () => {
 
   useEffect(() => {
     handleLoadCategory();
-    console.log(currentCategory);
   }, [selectedCategory, categories]);
 
   interface InfoProp {
@@ -72,9 +71,11 @@ const MainContent = () => {
           background: "linear-gradient(to bottom, #3b2a43 0%, #101010 40%, #101010 100%)",
         }}
         className="w-full h-[470px] rounded-b-[10px]"
-      ></section>
+      >
+        <PasswordList />
+      </section>
     </section>
   );
 };
 
-export default MainContent;
+export default CategoryContent;

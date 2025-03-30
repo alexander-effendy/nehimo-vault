@@ -6,15 +6,15 @@ import { RootState } from "@/store/store";
 
 // importing tsx components
 import Header from "./component/Header";
-import CategoryList from "./component/CategoryList";
-import MainContent from "./component/MainContent";
+import CategoryList from "./component/category/CategoryList";
+import CategoryContent from "./component/category/CategoryContent";
 
 // importing CSS
 import "./App.css";
 
 // importing icons
 import { TfiLock } from "react-icons/tfi";
-import AddCategoryModal from "./component/Modal/AddCategoryModal";
+import AddCategoryModal from "./component/modal/AddCategoryModal";
 
 // ################################################################################################## //
 
@@ -59,7 +59,7 @@ const App = () => {
       <CategoryList />
 
       {/* Password List */}
-      <MainContent />
+      <CategoryContent />
     </div>
   );
 };

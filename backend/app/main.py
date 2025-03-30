@@ -25,6 +25,11 @@ def get_db():
     finally:
         db.close()
 
+
+##########################################################################################################
+################################################ CATEGORY ################################################
+##########################################################################################################
+
 # POST CATEGORIES
 @app.post("/categories/", response_model=schemas.CategoryResponse)
 def create_category(category: schemas.CategoryCreate, db: Session = Depends(get_db)):
@@ -56,3 +61,24 @@ def read_category(category_id: int, db: Session = Depends(get_db)):
 #     if not db_category:
 #         raise HTTPException(status_code=404, detail="Category not found")
 #     return {"message": "Category deleted successfully"}
+
+##########################################################################################################
+################################################ PASSWORD ################################################
+##########################################################################################################
+
+# GET ALL PASSWORDS
+@app.get("/passwords/", response_model=list[schemas.PasswordResponse])
+def read_passwords(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    print('getting passwords now!!!')
+    return crud.get_passwords(db, skip, limit)
+
+# GET SPECIFIC PASSWORDS FOR A SPECIFIC CATEGORY
+@app.get("/passwords/{category_id}", response_model=schemas.PasswordResponse)
+def read_passwords_by_category(category_id: int, db: Session = Depends(get_db)):
+    print('reading passsword by category:')
+    print(category_id)
+    db_passwords = crud.get_passwords_by_category(db, category_id)
+    print(db_passwords)
+    # if not db_passwords:
+    #     raise HTTPException(status_code=404, detail="Passwords with the category not found")
+    # return db_passwords

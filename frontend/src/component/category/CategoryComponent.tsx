@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from "@/store/store";
 
-import { setSelectedCategory } from '../features/category/CategorySlice';
+import { setSelectedCategory } from '../../features/category/CategorySlice';
 
 import { CategoryComponentProp } from "@/features/category/CategorySlice";
 
-import catmeme from '../assets/catmeme.png';
+import catmeme from '../../assets/catmeme.png';
 import { useEffect } from "react";
 
 const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type, icon, last_edited, date_created }) => {
@@ -17,7 +17,7 @@ const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type, ico
   }
 
   useEffect(() => {
-    console.log('selected category updated: ' + selectedCategory);
+    // console.log('selected category updated: ' + selectedCategory);
   }, [selectedCategory])
 
   return (

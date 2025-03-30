@@ -4,20 +4,20 @@ import { useQuery } from '@tanstack/react-query';
 import { RootState } from "@/store/store";
 
 // IMPORT INTERFACES
-import { CategoryComponentProp } from "../features/category/CategorySlice";
+import { CategoryComponentProp } from "../../features/category/CategorySlice";
 
 // IMPORT COMPONENTS
-import CategoryComponent from "./CategoryComponentNew";
+import CategoryComponent from "./CategoryComponent";
 import HeaderCategory from "./HeaderCategory";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar";
 
 import { useDispatch, useSelector } from 'react-redux';
 
 // IMPORT REDUX SLICES
-import { setCategories } from '../features/category/CategorySlice';
+import { setCategories } from '../../features/category/CategorySlice';
 
 // import APIs
-import { fetchCategories } from "../api/categoryAPI";
+import { fetchCategories } from "../../api/CategoryAPI";
 
 const CategoryList = () => {
   const dispatch = useDispatch();
@@ -29,17 +29,19 @@ const CategoryList = () => {
   // local states
   const [localCategoryList, setLocalCategoryList] = useState<CategoryComponentProp[]>([]);
 
-  const { data, error, isError, isLoading } = useQuery({
+  const { data: categoryData, error: categoryError, isError: isCategoryError, isLoading: isCategoryLoading } = useQuery({
     queryKey: ['categories'],
     queryFn: fetchCategories,
   });
 
+  // use effect for categories
   useEffect(() => {
-    if (!isError && data) {
-      dispatch(setCategories(data));
-      setLocalCategoryList(data)
+    if (!isCategoryError && categoryData) {
+      dispatch(setCategories(categoryData));
+      setLocalCategoryList(categoryData)
+      console.log(categoryData)
     }
-  }, [data, dispatch, error]);
+  }, [categoryData, dispatch, categoryError]);
 
   useEffect(() => {
     if (searchCategory) {
@@ -58,8 +60,8 @@ const CategoryList = () => {
     setLocalCategoryList(categories)
   }, [categories])
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching categories: {error.message}</div>;
+  if (isCategoryLoading) return <div>Categories Loading...</div>;
+  if (categoryError) return <div>Error fetching categories: {categoryError.message}</div>;
 
   return (
     <section className="flex flex-col bg-[#101010] absolute top-[40px] left-[7px] h-[680px] w-[238px] rounded-[10px] px-2">
