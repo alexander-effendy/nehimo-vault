@@ -26,3 +26,11 @@
 .soft-scrollbar-right::-webkit-scrollbar-track {
   background: transparent; 
 }
+
+.highlightable::selection {
+  color: yellow;
+}
+
+.highlightable::-moz-selection {
+  color: yellow;
+}
