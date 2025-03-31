@@ -9,9 +9,14 @@ import { formatCreatedDate } from "../../utils/date";
 
 import PasswordList from "../password/PasswordList";
 
+// imporr utils functions
+import getDarkerColor from "../../utils/ColorGenerator";
+
 const CategoryContent = () => {
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
   const categories = useSelector((state: RootState) => state.category.categories);
+
+  const [baseColor, setBaseColor] = useState<string>('#bdbdbd');
 
   const [currentCategory, setCurrentCategory] = useState<CategoryComponentProp | null>(null);
 
@@ -49,12 +54,18 @@ const CategoryContent = () => {
       </section>
     );
   };
+
+  /*
+  Header is: #9168a5 --> #6f507f (0.14705882352941178 darker), #9168a5 --> # (0.208 darker)
+  Password List is: #9168a5 --> #3b2a43 (0.2823529411764706 darker)
+  Fixed color darkest: #101010
+  */
   return (
     <section className="flex flex-col absolute top-[40px] left-[252px] h-[680px] w-[671px] rounded-[10px]">
       {/* HEADER */}
       <section
         style={{
-          background: "linear-gradient(to bottom, #9168a5 0%, #6f507f 40%, #503958 100%)",
+          background: `linear-gradient(to bottom, ${baseColor} 0%, ${getDarkerColor(baseColor, 0.18)} 40%, ${getDarkerColor(baseColor, 0.22)} 100%)`,
         }}
         className="w-full h-[210px] rounded-t-[10px] flex pt-10 pl-4 pb-6"
       >
@@ -67,7 +78,7 @@ const CategoryContent = () => {
       {/* LIST */}
       <section
         style={{
-          background: "linear-gradient(to bottom, #3b2a43 0%, #101010 40%, #101010 100%)",
+          background: `linear-gradient(to bottom, ${getDarkerColor(baseColor, 0.328)} 0%, #101010 40%, #101010 100%)`,
         }}
         className="w-full h-[470px] rounded-b-[10px]"
       >
