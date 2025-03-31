@@ -49,9 +49,8 @@ const CategoryContent = () => {
       </section>
     );
   };
-
   return (
-    <section className="flex flex-col bg-[#101010] absolute top-[40px] left-[252px] h-[680px] w-[671px] rounded-[10px]">
+    <section className="flex flex-col absolute top-[40px] left-[252px] h-[680px] w-[671px] rounded-[10px]">
       {/* HEADER */}
       <section
         style={{

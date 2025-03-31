@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { RootState } from "@/store/store";
 
 // IMPORT INTERFACES
-import { CategoryComponentProp } from "../../features/category/CategorySlice";
+import { CategoryComponentProp, setSelectedCategory } from "../../features/category/CategorySlice";
 
 // IMPORT COMPONENTS
 import CategoryComponent from "./CategoryComponent";
@@ -38,6 +38,7 @@ const CategoryList = () => {
   useEffect(() => {
     if (!isCategoryError && categoryData) {
       dispatch(setCategories(categoryData));
+      if (categoryData.length > 0) dispatch(setSelectedCategory(1));
       setLocalCategoryList(categoryData)
       console.log(categoryData)
     }

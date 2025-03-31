@@ -8,6 +8,7 @@ interface PasswordPropAPI {
 }
 
 export const fetchPasswords = async () => {
+  console.log('fetching passwords api frontend called')
   const response = await api.get('/passwords/');
   if (response.request.status !== 200) {
     throw new Error('Fetching Passwords Error: Response is not 200');

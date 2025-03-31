@@ -25,6 +25,7 @@ const PasswordList = () => {
   const dispatch = useDispatch();
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
   const passwords = useSelector((state: RootState) => state.password.passwords);
+  const categories = useSelector((state: RootState) => state.category.categories);
 
   const [passwordsByCategory, setPasswordsByCategory] = useState<PasswordComponentProp[]>([]);
 
@@ -43,6 +44,7 @@ const PasswordList = () => {
       dispatch(setPasswords(data));
     }
   }, [isError, data]);
+
   
   if (isLoading) return <div>Retrieving password loading</div>
   if (error) return <div>Retrieving password list error</div>
