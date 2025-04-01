@@ -80,6 +80,7 @@ const CategoryList = () => {
             icon={item.icon}
             last_edited={item.last_edited}
             date_created={item.date_created}
+            colour={item.colour}
           />
         ))}
       </section>

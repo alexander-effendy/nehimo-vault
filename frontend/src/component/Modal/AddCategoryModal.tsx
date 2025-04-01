@@ -30,18 +30,17 @@ const AddCategoryModal = () => {
       icon: null,
       id: categories.length + 1,
       date_created: new Date().toISOString(),
+      colour: '#bdbdbd'
     }
-    // update redux store first (optimistic update)
     dispatch(addCategory(newCategory));
-    // then calls API
 
     const newCategoryAPI = {
       name: categoryNameInput,
       type: categoryTypeInput,
       icon: null,
+      colour: '#bdbdbd'
     }
     addCategoryAPI(newCategoryAPI);
-
     handleModalOpen(false);
   };
 

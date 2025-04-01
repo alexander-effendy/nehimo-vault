@@ -8,7 +8,7 @@ from . import models, schemas
 # POST CATEGORIES
 def create_category(db: Session, category: schemas.CategoryCreate):
     print("Validated data:", category.dict())
-    db_category = models.Category(name=category.name, type=category.type, icon=category.icon)
+    db_category = models.Category(name=category.name, type=category.type, icon=category.icon, colour=category.colour)
     db.add(db_category)
     db.commit()
     db.refresh(db_category)
@@ -21,6 +21,16 @@ def get_categories(db: Session, skip: int = 0, limit: int = 10):
 # GET SPECIFIC CATEGORIES
 def get_category(db: Session, category_id: int):
     return db.query(models.Category).filter(models.Category.id == category_id).first()
+
+# UPDATE CATEGORY
+def update_category(db: Session, category_id: int, category_update: schemas.CategoryUpdate):
+    db_category = db.query(models.Category).filter(models.Category.id == category_id).first();
+    if db_category:
+        for field, value in category_update.dict(exclude_unset=True).items():
+            setattr(db_category, field, value)
+        db.commit()
+        db.refresh(db_category)
+    return db_category;
 
 # def update_category(db: Session, category_id: int, category_update: schemas.CategoryCreate):
 #     db_category = get_category(db, category_id)

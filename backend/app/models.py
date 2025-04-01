@@ -11,6 +11,7 @@ class Category(Base):
     date_created = Column(DateTime, nullable=False, default=func.now())
     last_edited = Column(DateTime, nullable=False, default=func.now(), onupdate=func.now())
     icon = Column(String, nullable=True)
+    colour = Column(String)
 
 class Password(Base):
     __tablename__ = "password"
