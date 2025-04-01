@@ -6,7 +6,7 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "@/store/store";
@@ -16,16 +16,22 @@ import { fetchPasswords } from "../../api/PasswordAPI";
 import { setPasswords } from "../../features/category/PasswordSlice";
 
 import { PasswordComponentProp } from "../../features/category/PasswordSlice";
+
 import PasswordComponent from "./PasswordComponent";
+import ColourPicker from "../../utils/ColourPicker";
+
 import { FaListUl } from "react-icons/fa6";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { IoColorPaletteOutline } from "react-icons/io5";
+
 
 const PasswordList = () => {
   const dispatch = useDispatch();
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
   const passwords = useSelector((state: RootState) => state.password.passwords);
-  const categories = useSelector((state: RootState) => state.category.categories);
+  const [colourPickerOpen, setColourPickerOpen] = useState<boolean>(false);
+
+  const colourPickerRef = useRef<HTMLDivElement>(null);
 
   const [passwordsByCategory, setPasswordsByCategory] = useState<PasswordComponentProp[]>([]);
 
@@ -45,6 +51,24 @@ const PasswordList = () => {
     }
   }, [isError, data]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (colourPickerRef.current && !colourPickerRef.current.contains(event.target as Node)) {
+        setColourPickerOpen(false);
+      }
+    };
+
+    if (colourPickerOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [colourPickerOpen]);
+
   
   if (isLoading) return <div>Retrieving password loading</div>
   if (error) return <div>Retrieving password list error</div>
@@ -52,7 +76,7 @@ const PasswordList = () => {
   return (
     <div className="flex flex-col">
       <section className="border-b-[1px]s border-gray-500 w-full h-[80px] flex px-5 justify-between">
-        <section className="flex my-auto gap-4">
+        <section className="flex my-auto gap-4 bg-blacsk items-center">
           <button className="text-gray-400 hover:text-white hover:cursor-pointer">
             <FiEdit size={25} />
           </button>
@@ -60,8 +84,9 @@ const PasswordList = () => {
             <RiDeleteBin6Line size={25} />
           </button>
           <button className="text-gray-400 hover:text-white hover:cursor-pointer">
-            <IoColorPaletteOutline size={25} />
+            <IoColorPaletteOutline onClick={() => setColourPickerOpen(prevState => !prevState)} size={25} />
           </button>
+          {colourPickerOpen && <div ref={colourPickerRef}><ColourPicker /></div>}
         </section>
         <section className="flex my-auto gap-4">
           <button className="text-gray-400 hover:text-white hover:cursor-pointer">

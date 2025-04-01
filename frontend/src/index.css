@@ -5,3 +5,7 @@
   -webkit-app-region: drag; /* Makes this area draggable */
   height: 40px;
 }
+
+.text-shadow-custom {
+  text-shadow: 2px 2px 2px rgba(131, 131, 131, 0.5);
+}

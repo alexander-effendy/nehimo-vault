@@ -8,11 +8,15 @@ from pydantic import BaseModel
 ############################################################
 
 class CategoryBase(BaseModel):
-    name: str
-    type: str
+    name: Optional[str] = None 
+    type: Optional[str] = None 
     icon: Optional[str] = None 
+    colour: Optional[str] = None
 
 class CategoryCreate(CategoryBase):
+    pass
+
+class CategoryUpdate(CategoryBase):
     pass
 
 class CategoryResponse(CategoryBase):
