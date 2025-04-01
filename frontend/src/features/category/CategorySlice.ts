@@ -9,6 +9,7 @@ export interface CategoryComponentProp {
   date_created: string;
   last_edited: string;
   icon: IconType;
+  colour: string;
 }
 
 interface CategoryState {

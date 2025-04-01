@@ -11,6 +11,7 @@ import { useEffect } from "react";
 const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type, icon, last_edited, date_created }) => {
   const dispatch = useDispatch();
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
+  const categories = useSelector((state: RootState) => state.category.categories);
 
   const handleCategoryClick = (id: number) => {
     dispatch(setSelectedCategory(id));

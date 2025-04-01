@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 import { CategoryComponentProp } from "@/features/category/CategorySlice";
 
 import catmeme from '../../assets/catmeme.png';
-import { formatCreatedDate } from "../../utils/date";
 
 import PasswordList from "../password/PasswordList";
 
 // imporr utils functions
-import getDarkerColor from "../../utils/ColorGenerator";
+import getDarkerColor from "../../utils/ColourGenerator";
+import { formatCreatedDate } from "../../utils/date";
 
 const CategoryContent = () => {
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
@@ -24,8 +24,10 @@ const CategoryContent = () => {
     if (categories.length !== 0) {
       if (selectedCategory) {
         setCurrentCategory(categories[selectedCategory - 1]);
+        setBaseColor(categories[selectedCategory - 1].colour)
       } else {
         setCurrentCategory(categories[0]);
+        setBaseColor(categories[0].colour)
       }
     }
   };
@@ -54,7 +56,6 @@ const CategoryContent = () => {
       </section>
     );
   };
-
   /*
   Header is: #9168a5 --> #6f507f (0.14705882352941178 darker), #9168a5 --> # (0.208 darker)
   Password List is: #9168a5 --> #3b2a43 (0.2823529411764706 darker)
@@ -66,6 +67,7 @@ const CategoryContent = () => {
       <section
         style={{
           background: `linear-gradient(to bottom, ${baseColor} 0%, ${getDarkerColor(baseColor, 0.18)} 40%, ${getDarkerColor(baseColor, 0.22)} 100%)`,
+          boxShadow: `inset 30px -55px 90px -30px rgba(0, 0, 0, 0.4)`,
         }}
         className="w-full h-[210px] rounded-t-[10px] flex pt-10 pl-4 pb-6"
       >
@@ -78,7 +80,7 @@ const CategoryContent = () => {
       {/* LIST */}
       <section
         style={{
-          background: `linear-gradient(to bottom, ${getDarkerColor(baseColor, 0.328)} 0%, #101010 40%, #101010 100%)`,
+          background: `linear-gradient(to bottom, ${getDarkerColor(baseColor, 0.328)} 0%, #101010 30%, #101010 100%)`,
         }}
         className="w-full h-[470px] rounded-b-[10px]"
       >
