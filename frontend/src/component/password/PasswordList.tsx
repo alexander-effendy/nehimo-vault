@@ -21,9 +21,7 @@ import PasswordComponent from "./PasswordComponent";
 import ColourPicker from "../../utils/ColourPicker";
 
 import { FaListUl } from "react-icons/fa6";
-import { IoCalendarNumberOutline } from "react-icons/io5";
 import { IoColorPaletteOutline } from "react-icons/io5";
-
 
 const PasswordList = () => {
   const dispatch = useDispatch();
@@ -127,13 +125,3 @@ const PasswordList = () => {
 };
 
 export default PasswordList;
-
-// export interface PasswordComponentProp {
-//   id: number;
-//   categoryid: number;
-//   usage: string;
-//   username: string;
-//   password: string;
-//   date_created: string;
-//   last_edited: string;
-// }

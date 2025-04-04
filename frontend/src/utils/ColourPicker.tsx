@@ -4,6 +4,8 @@ import { RootState } from "@/store/store";
 import styled from 'styled-components';
 import { CategoryComponentProp, setCategories } from '../features/category/CategorySlice';
 
+import { updateCategoryAPI } from '../api/CategoryAPI';
+
 const StyledCirclePicker = styled(CirclePicker)`
   width: 100% !important;
   height: 100% !important;
@@ -25,18 +27,33 @@ const ColourPicker = () => {
       }
       return category;
     });
-    console.log(newColor)
+
     return updatedCategories;
   }
 
-  const handleColorChange = (newColor: ColorResult) => {
+  const handleColorChange = async (newColor: ColorResult) => {
     if (!selectedCategory) return;
     // call the api
     console.log('selected category id is: ' + selectedCategory);
     console.log('so we should change the category component this:');
+
+    // update redux
     const newCategories = updateCategoryColor(categories, selectedCategory, newColor.hex);
-    console.log(newCategories);
     dispatch(setCategories(newCategories));
+
+    console.log(categories[selectedCategory - 1])
+
+    const currentCategory = categories[selectedCategory - 1];
+    console.log(selectedCategory, newColor.hex)
+
+    // update database from API
+    await updateCategoryAPI({
+      id: currentCategory.id,
+      colour: newColor.hex,
+      name: currentCategory.name,
+      type: currentCategory.type,
+      icon: currentCategory.icon,
+    });
   }
 
   return (
