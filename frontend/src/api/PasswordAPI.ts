@@ -23,3 +23,11 @@ export const fetchPasswordsByCategoryId = async (categoryid?: number) => {
   }
   return response.data;
 }
+
+// export const AddPasswordAPI = async (password: PasswordPropAPI) => {
+//   const response = await api.post('/passwords', {
+//     usage: password.usage,
+//     username: password.username,
+
+//   })
+// }
