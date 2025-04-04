@@ -8,6 +8,14 @@ interface CategoryPropAPI {
   colour: string | null;
 }
 
+interface CategoryUpdatePropAPI {
+  id: number | null;
+  name: string | null;
+  type: string | null;
+  icon: IconType | null;
+  colour: string | null;
+}
+
 export const fetchCategories = async () => {
   const response = await api.get('/categories/');
   if (response.request.status !== 200) {
@@ -29,8 +37,9 @@ export const addCategoryAPI = async (category: CategoryPropAPI) => {
   console.log('response OK for adding catagery')
 }
 
-export const updateCategoryAPI = async (category: CategoryPropAPI) => {
-  const response = await api.patch('/categories', {
+export const updateCategoryAPI = async (category: CategoryUpdatePropAPI) => {
+  console.log(category);
+  const response = await api.patch(`/categories/${category.id}`, {
     name: category.name,
     type: category.type,
     icon: category.icon,

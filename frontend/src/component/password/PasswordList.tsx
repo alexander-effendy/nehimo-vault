@@ -21,9 +21,7 @@ import PasswordComponent from "./PasswordComponent";
 import ColourPicker from "../../utils/ColourPicker";
 
 import { FaListUl } from "react-icons/fa6";
-import { IoCalendarNumberOutline } from "react-icons/io5";
 import { IoColorPaletteOutline } from "react-icons/io5";
-
 
 const PasswordList = () => {
   const dispatch = useDispatch();
@@ -105,7 +103,7 @@ const PasswordList = () => {
         <span className="ml-[20px]">Usage</span>
         <span className="ml-[117px]">Username</span>
         <span className="ml-[108px] highlightable">Password</span>
-        <span className="ml-[135px]"><IoCalendarNumberOutline size={16} /></span>
+        <span className="ml-[115px]">Created</span>
       </section>
       {/* map the list of passwords here (within a password list) */}
       <section className="flex flex-col mt-3">
@@ -127,13 +125,3 @@ const PasswordList = () => {
 };
 
 export default PasswordList;
-
-// export interface PasswordComponentProp {
-//   id: number;
-//   categoryid: number;
-//   usage: string;
-//   username: string;
-//   password: string;
-//   date_created: string;
-//   last_edited: string;
-// }

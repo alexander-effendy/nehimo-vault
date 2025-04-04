@@ -8,17 +8,15 @@ import { CategoryComponentProp } from "@/features/category/CategorySlice";
 import catmeme from '../../assets/catmeme.png';
 import { useEffect } from "react";
 
-const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type, icon, last_edited, date_created }) => {
+const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type }) => {
   const dispatch = useDispatch();
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
-  const categories = useSelector((state: RootState) => state.category.categories);
 
   const handleCategoryClick = (id: number) => {
     dispatch(setSelectedCategory(id));
   }
 
   useEffect(() => {
-    // console.log('selected category updated: ' + selectedCategory);
   }, [selectedCategory])
 
   return (
@@ -27,7 +25,6 @@ const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type, ico
       onClick={() => handleCategoryClick(id)}
       className={`${selectedCategory === id ? 'bg-stone-800' : 'hover:bg-stone-900'} flex h-[52px] rounded-[5px] p-1 hover:cursor-pointer`}
     >
-      {/* later icon */}
       <img className="size-[45px] rounded-[5px] border-[1px] border-gray-500"
         src={catmeme}
       />

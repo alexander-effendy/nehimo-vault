@@ -50,7 +50,9 @@ def read_category(category_id: int, db: Session = Depends(get_db)):
 
 # UPDATE CATEGORY
 @app.patch("/categories/{category_id}", response_model=schemas.CategoryResponse)
-def update_category(category_id: int, db: Session = Depends(get_db)):
+def update_category(category_id: int, category_update: schemas.CategoryCreate, db: Session = Depends(get_db)):
+    print('update patch category called')
+    print(category_id)
     db_category = crud.update_category(db, category_id, category_update)
     if db_category is None:
         raise HTTPException(status_code=404, detail="Category not found")
