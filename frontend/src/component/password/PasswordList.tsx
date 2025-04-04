@@ -105,7 +105,7 @@ const PasswordList = () => {
         <span className="ml-[20px]">Usage</span>
         <span className="ml-[117px]">Username</span>
         <span className="ml-[108px] highlightable">Password</span>
-        <span className="ml-[135px]"><IoCalendarNumberOutline size={16} /></span>
+        <span className="ml-[115px]">Created</span>
       </section>
       {/* map the list of passwords here (within a password list) */}
       <section className="flex flex-col mt-3">

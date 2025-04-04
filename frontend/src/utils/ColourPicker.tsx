@@ -41,7 +41,7 @@ const ColourPicker = () => {
 
   return (
     <div 
-      className="z-300 absolute left-37 top-59 w-[262px] h-[140px] rounded-[10px] flex items-center justify-center p-1 border-[1px] border-gray-700"
+      className="z-300 absolute left-25 top-58 w-[262px] h-[140px] rounded-[10px] flex items-center justify-center p-1 border-[1px] border-gray-700"
       style={{ 
         background: `linear-gradient(to bottom, #636363 20%, #101010 100%)`,
       }}
