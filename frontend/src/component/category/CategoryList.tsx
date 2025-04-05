@@ -57,7 +57,6 @@ const CategoryList = () => {
   }, [searchCategory])
 
   useEffect(() => {
-    console.log('categories change detected')
     setLocalCategoryList(categories)
   }, [categories])
 

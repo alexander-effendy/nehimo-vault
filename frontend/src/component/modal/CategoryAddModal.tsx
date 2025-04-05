@@ -4,6 +4,8 @@ import { RootState } from "@/store/store";
 import { setAddCategoryModalOpen, addCategory } from "../../features/category/CategorySlice";
 import { useState } from "react";
 
+import { categoryChooseHighestId } from "../../utils/CategoryUtils";
+
 import { addCategoryAPI } from "../../api/CategoryAPI";
 
 const AddCategoryModal = () => {
@@ -16,7 +18,7 @@ const AddCategoryModal = () => {
 
   const [showWarning, setShowWarning] = useState<boolean>(false);
 
-  const handleAddCategory = () => {
+  const handleAddCategory = async () => {
     console.log(categoryNameInput, categoryTypeInput);
 
     if (!categoryNameInput || !categoryTypeInput) {
@@ -32,7 +34,7 @@ const AddCategoryModal = () => {
       date_created: new Date().toISOString(),
       colour: "#bdbdbd",
     };
-    dispatch(addCategory(newCategory));
+    // dispatch(addCategory(newCategory));
 
     const newCategoryAPI = {
       name: categoryNameInput,
@@ -40,7 +42,11 @@ const AddCategoryModal = () => {
       icon: null,
       colour: "#bdbdbd",
     };
-    addCategoryAPI(newCategoryAPI);
+
+    const nc = await addCategoryAPI(newCategoryAPI);
+    console.log(nc);
+    dispatch(addCategory(nc));
+
     handleModalOpen(false);
   };
 

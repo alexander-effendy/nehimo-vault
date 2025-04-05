@@ -2,7 +2,6 @@ import { PasswordComponentProp } from "@/features/category/PasswordSlice";
 import { useState } from "react";
 import { formatCreatedDate } from "../../utils/date";
 import { PiDotsThreeOutlineLight } from "react-icons/pi";
-import { MdContentCopy } from "react-icons/md";
 
 const PasswordComponent: React.FC<PasswordComponentProp> = ({ id, categoryid, usage, username, password, date_created, last_edited}) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);

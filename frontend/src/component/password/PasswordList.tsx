@@ -69,8 +69,8 @@ const PasswordList = () => {
   }, [colourPickerOpen]);
 
   
-  if (isLoading) return <div>Retrieving password loading</div>
-  if (error) return <div>Retrieving password list error</div>
+  if (isLoading) return <div></div>
+  if (error) return <div>Error!</div>
 
   const handleDeleteCategoryModalOpen = () => {
     dispatch(setDeleteCategoryModalOpen(true));

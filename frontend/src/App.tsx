@@ -39,7 +39,7 @@ const App = () => {
   const addCategoryModalOpen = useSelector((state: RootState) => state.category.addCategoryModalOpen);
 
   useEffect(() => {
-    console.log('App.tsx starting');
+    // console.log('App.tsx starting');
   }, []);
 
   return (

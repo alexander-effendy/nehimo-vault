@@ -3,9 +3,7 @@ import { RootState } from "@/store/store";
 
 import { categoryChooser } from '../../utils/CategoryUtils';
 
-import { setSelectedCategory, setSelectedCategoryObject } from '../../features/category/CategorySlice';
-
-import { CategoryComponentProp } from "@/features/category/CategorySlice";
+import { setSelectedCategory, setSelectedCategoryObject, CategoryComponentProp } from '../../features/category/CategorySlice';
 
 import catmeme from '../../assets/catmeme.png';
 import { useEffect } from "react";
@@ -13,18 +11,23 @@ import { useEffect } from "react";
 const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type }) => {
   const dispatch = useDispatch();
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
+  const afterDeleteEffect = useSelector((state: RootState) => state.category.afterDeleteEffect);
   const categories = useSelector((state: RootState) => state.category.categories);
 
-  const handleCategoryClick = (id: number) => {
-    console.log('clicked!')
+  const handleCategoryClick = (id: number | null) => {
     dispatch(setSelectedCategory(id));
     const cob = categoryChooser(categories, id);
-    console.log(cob);
     dispatch(setSelectedCategoryObject(cob));
   }
 
   useEffect(() => {
-  }, [selectedCategory])
+    // void
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    const categoryId = categories[0]?.id || null;
+    handleCategoryClick(categoryId);
+  }, [afterDeleteEffect])
 
   return (
     <div 
