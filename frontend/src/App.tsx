@@ -14,7 +14,7 @@ import "./App.css";
 
 // importing icons
 import { TfiLock } from "react-icons/tfi";
-import AddCategoryModal from "./component/modal/AddCategoryModal";
+import AddCategoryModal from "./component/modal/CategoryAddModal";
 
 // ################################################################################################## //
 

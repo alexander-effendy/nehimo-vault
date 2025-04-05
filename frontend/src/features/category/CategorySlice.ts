@@ -1,4 +1,3 @@
-// src/features/category/categorySlice.js
 import { createSlice } from '@reduxjs/toolkit';
 import { IconType } from "react-icons";
 
@@ -15,15 +14,19 @@ export interface CategoryComponentProp {
 interface CategoryState {
   categories: CategoryComponentProp[];
   selectedCategoryId: number | null;
+  selectedCategoryObject: CategoryComponentProp | null;
   searchCategory: string | null;
   addCategoryModalOpen: boolean;
+  deleteCategoryModalOpen: boolean;
 }
 
 const initialState: CategoryState = {
   categories: [],
   selectedCategoryId: null,
+  selectedCategoryObject: null,
   searchCategory: null,
   addCategoryModalOpen: false,
+  deleteCategoryModalOpen: false,
 };
 
 const categorySlice = createSlice({
@@ -39,11 +42,19 @@ const categorySlice = createSlice({
     setSelectedCategory(state, action) {
       state.selectedCategoryId = action.payload;
     },
+    setSelectedCategoryObject(state, action) {
+      state.selectedCategoryObject = action.payload;
+    },
     setSearchCategory(state, action) {
       state.searchCategory = action.payload;
     },
     setAddCategoryModalOpen(state, action) {
       state.addCategoryModalOpen = action.payload;
+    },
+    setDeleteCategoryModalOpen(state, action) {
+      console.log('open')
+      console.log(action.payload)
+      state.deleteCategoryModalOpen = action.payload;
     }
   },
 });
@@ -51,7 +62,10 @@ const categorySlice = createSlice({
 export const { 
   setCategories, 
   addCategory, 
-  setSelectedCategory, 
+  setSelectedCategory,
+  setSelectedCategoryObject,
   setSearchCategory, 
-  setAddCategoryModalOpen } = categorySlice.actions;
+  setAddCategoryModalOpen,
+  setDeleteCategoryModalOpen } = categorySlice.actions;
+
 export default categorySlice.reducer;

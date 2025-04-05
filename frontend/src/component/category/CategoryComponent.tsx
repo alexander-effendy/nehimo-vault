@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from "@/store/store";
 
-import { setSelectedCategory } from '../../features/category/CategorySlice';
+import { categoryChooser } from '../../utils/CategoryUtils';
+
+import { setSelectedCategory, setSelectedCategoryObject } from '../../features/category/CategorySlice';
 
 import { CategoryComponentProp } from "@/features/category/CategorySlice";
 
@@ -11,9 +13,14 @@ import { useEffect } from "react";
 const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type }) => {
   const dispatch = useDispatch();
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
+  const categories = useSelector((state: RootState) => state.category.categories);
 
   const handleCategoryClick = (id: number) => {
+    console.log('clicked!')
     dispatch(setSelectedCategory(id));
+    const cob = categoryChooser(categories, id);
+    console.log(cob);
+    dispatch(setSelectedCategoryObject(cob));
   }
 
   useEffect(() => {

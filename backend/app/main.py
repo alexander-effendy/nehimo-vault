@@ -58,6 +58,17 @@ def update_category(category_id: int, category_update: schemas.CategoryCreate, d
         raise HTTPException(status_code=404, detail="Category not found")
     return db_category
 
+# DELETE CATEGORY
+@app.delete("/categories/{category_id}", response_model=schemas.CategoryResponse)
+def delete_category(category_id: int, db: Session = Depends(get_db)):
+    print('delete category with the id: ')
+    print(category_id)
+    print(category_id)
+    db_category = crud.delete_category(db, category_id)
+    if db_category is None:
+        raise HTTPException(status_code=404, detail="Category not found")
+    return db_category
+
 # @app.put("/categories/{category_id}", response_model=schemas.CategoryResponse)
 # def update_category(category_id: int, category: schemas.CategoryCreate, db: Session = Depends(get_db)):
 #     db_category = crud.update_category(db, category_id, category)

@@ -7,9 +7,7 @@ import { CategoryComponentProp, setCategories } from '../features/category/Categ
 import { updateCategoryAPI } from '../api/CategoryAPI';
 
 const StyledCirclePicker = styled(CirclePicker)`
-  width: 100% !important;
-  height: 100% !important;
-  display: flex !important;
+  padding: 5px !important;
 `;
 
 const ColourPicker = () => {
@@ -58,12 +56,12 @@ const ColourPicker = () => {
 
   return (
     <div 
-      className="z-300 absolute left-25 top-58 w-[262px] h-[140px] rounded-[10px] flex items-center justify-center p-1 border-[1px] border-gray-700"
-      style={{ 
-        background: `linear-gradient(to bottom, #636363 20%, #101010 100%)`,
-      }}
+      className="z-300 bg-gray-800 absolute left-30 top-58 w-[262pxs] h-[140pxs] rounded-[10px] flex items-center justify-center p-1 border-[1px] border-gray-700"
+      // style={{
+      //   background: `linear-gradient(to bottom, #101010 100%)`,
+      // }}
     >
-      <StyledCirclePicker onChangeComplete={handleColorChange} />
+      <StyledCirclePicker circleSize={15} circleSpacing={6} width={'200px'} onChangeComplete={handleColorChange} />
     </div>
   )
 }
