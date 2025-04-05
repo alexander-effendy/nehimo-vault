@@ -9,6 +9,7 @@ import { RootState } from "@/store/store";
 import { useQuery } from "@tanstack/react-query";
 
 import { setDeleteCategoryModalOpen } from "../../features/category/CategorySlice";
+import {setAddPasswordModalOpen } from "../../features/category/PasswordSlice";
 
 import { fetchPasswords } from "../../api/PasswordAPI";
 import { setPasswords } from "../../features/category/PasswordSlice";
@@ -40,7 +41,7 @@ const PasswordList = () => {
   useEffect(() => {
     const currentPasswords = passwords.filter((password) => password.categoryid === selectedCategory);
     setPasswordsByCategory(currentPasswords);
-  }, [selectedCategory]);
+  }, [selectedCategory, passwords]);
 
   useEffect(() => {
     if (!isError && data) {
@@ -76,12 +77,16 @@ const PasswordList = () => {
     dispatch(setDeleteCategoryModalOpen(true));
   }
 
+  const handleAddPasswordModalOpen = (status: boolean) => {
+    dispatch(setAddPasswordModalOpen(status));
+  }
+
   return (
     <div className="flex flex-col">
       <section className="border-b-[1px]s border-gray-500 w-full h-[80px] flex px-5 justify-between">
         <section className="flex my-auto gap-4 bg-blacsk items-center">
           <button className="text-gray-400 hover:text-white hover:cursor-pointer hover:bg-gray-500 rounded-full transition-all duration-400 p-1">
-            <GoPlus size={25} />
+            <GoPlus size={25} onClick={() => handleAddPasswordModalOpen(true)}/>
           </button>
           <button className="text-gray-400 hover:text-white hover:cursor-pointer p-1">
             <RiDeleteBin6Line onClick={() => handleDeleteCategoryModalOpen()} size={25} />
