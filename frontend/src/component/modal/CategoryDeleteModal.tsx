@@ -1,7 +1,7 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { CategoryComponentProp, setDeleteCategoryModalOpen, setCategories, setSelectedCategory } from "../../features/category/CategorySlice";
+import { CategoryComponentProp, setDeleteCategoryModalOpen, setCategories, setSelectedCategoryObject, setSelectedCategory, setAfterDeleteEffect } from "../../features/category/CategorySlice";
 
 import { deleteCategoryAPI } from "../../api/CategoryAPI";
 import { useEffect, useState } from "react";
@@ -12,21 +12,27 @@ const DeleteCategoryModal = () => {
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
   const categories = useSelector((state: RootState) => state.category.categories);
   const selectedCategoryObject = useSelector((state: RootState) => state.category.selectedCategoryObject);
+  const afterDeleteEffect = useSelector((state: RootState) => state.category.afterDeleteEffect);
 
   const [category, setCategory] = useState<CategoryComponentProp | null>(null);
 
-  const handleDeleteCategory = () => {
+  const handleDeleteCategory = async () => {
     // remove that category from categories form redux (frontend)
     const updatedCategories = categories.filter((category) => category.id !== selectedCategory);
     dispatch(setCategories(updatedCategories));
 
     // delete category backend --> db
-    console.log(selectedCategory)
-    deleteCategoryAPI(selectedCategory);
+    await deleteCategoryAPI(selectedCategory);
 
     // CategoryContent should show the first one!
-    setSelectedCategory(1);
+    if (categories[0].id) {
+      const currentCategoryId = categories[0].id;
+      setSelectedCategory(currentCategoryId);
+      setSelectedCategoryObject(categories[0]);
+    }
+    dispatch(setAfterDeleteEffect(!afterDeleteEffect));
     handleModalOpen(false);
+    // location.reload();
   };
 
   const handleModalOpen = (status: boolean) => {
@@ -39,7 +45,7 @@ const DeleteCategoryModal = () => {
   };
 
   useEffect(() => {
-    console.log(category)
+    // void
   }), [category];
 
   return (

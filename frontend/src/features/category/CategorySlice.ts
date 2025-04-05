@@ -18,6 +18,7 @@ interface CategoryState {
   searchCategory: string | null;
   addCategoryModalOpen: boolean;
   deleteCategoryModalOpen: boolean;
+  afterDeleteEffect: boolean;
 }
 
 const initialState: CategoryState = {
@@ -27,6 +28,7 @@ const initialState: CategoryState = {
   searchCategory: null,
   addCategoryModalOpen: false,
   deleteCategoryModalOpen: false,
+  afterDeleteEffect: false,
 };
 
 const categorySlice = createSlice({
@@ -52,9 +54,10 @@ const categorySlice = createSlice({
       state.addCategoryModalOpen = action.payload;
     },
     setDeleteCategoryModalOpen(state, action) {
-      console.log('open')
-      console.log(action.payload)
       state.deleteCategoryModalOpen = action.payload;
+    },
+    setAfterDeleteEffect(state, action) {
+      state.afterDeleteEffect = action.payload;
     }
   },
 });
@@ -66,6 +69,7 @@ export const {
   setSelectedCategoryObject,
   setSearchCategory, 
   setAddCategoryModalOpen,
-  setDeleteCategoryModalOpen } = categorySlice.actions;
+  setDeleteCategoryModalOpen,
+  setAfterDeleteEffect } = categorySlice.actions;
 
 export default categorySlice.reducer;

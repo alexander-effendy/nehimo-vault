@@ -13,11 +13,15 @@ const StyledCirclePicker = styled(CirclePicker)`
 const ColourPicker = () => {
   const dispatch = useDispatch();
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
+  const selectedCategoryObject = useSelector((state: RootState) => state.category.selectedCategoryObject);
+
   const categories = useSelector((state: RootState) => state.category.categories);
 
   const updateCategoryColor = (categories: CategoryComponentProp[], selectedCategory: number, newColor: string) => {
-    const updatedCategories = categories.map((category, index) => {
-      if (selectedCategory - 1 === index) {
+    console.log(categories);
+    console.log(selectedCategory)
+    const updatedCategories = categories.map((category, _) => {
+      if (category.id === selectedCategory) {
         return {
           ...category,
           colour: newColor,
@@ -25,7 +29,7 @@ const ColourPicker = () => {
       }
       return category;
     });
-
+    console.log(updatedCategories);
     return updatedCategories;
   }
 
@@ -37,22 +41,18 @@ const ColourPicker = () => {
 
     // update redux
     const newCategories = updateCategoryColor(categories, selectedCategory, newColor.hex);
+    console.log(newCategories);
     dispatch(setCategories(newCategories));
-
-    console.log(categories[selectedCategory - 1])
-
-    const currentCategory = categories[selectedCategory - 1];
-    console.log(selectedCategory, newColor.hex)
 
     // update database from API
     await updateCategoryAPI({
-      id: currentCategory.id,
+      id: selectedCategoryObject?.id,
       colour: newColor.hex,
-      name: currentCategory.name,
-      type: currentCategory.type,
-      icon: currentCategory.icon,
+      name: selectedCategoryObject?.name,
+      type: selectedCategoryObject?.type,
+      icon: selectedCategoryObject?.icon,
     });
-  }
+  };
 
   return (
     <div 

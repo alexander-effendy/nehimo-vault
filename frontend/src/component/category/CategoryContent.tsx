@@ -12,6 +12,7 @@ import PasswordList from "../password/PasswordList";
 // imporr utils functions
 import getDarkerColor from "../../utils/ColourGenerator";
 import { formatCreatedDate } from "../../utils/date";
+import { categoryChooser } from "../../utils/CategoryUtils";
 
 const CategoryContent = () => {
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
@@ -20,23 +21,23 @@ const CategoryContent = () => {
 
   const [baseColor, setBaseColor] = useState<string | null | undefined>('#bdbdbd');
 
-  const [currentCategory, setCurrentCategory] = useState<CategoryComponentProp | null>(null);
+  const [currentCategory, setCurrentCategory] = useState<CategoryComponentProp | null | undefined>(null);
 
   const handleLoadCategory = () => {
+    console.log('loadd')
     if (Object.keys(categories).length !== 0) {
       if (selectedCategory) {
-        console.log(selectedCategory)
-        setCurrentCategory(selectedCategoryObject);
+        const currentCategory = categoryChooser(categories, selectedCategory);
+        console.log(currentCategory)
+        setCurrentCategory(currentCategory);
         if (selectedCategoryObject) {
-          setBaseColor(selectedCategoryObject?.colour);
+          setBaseColor(currentCategory?.colour);
         }
       } else {
         setCurrentCategory(categories[0]);
         setBaseColor(categories[0].colour);
       }
     }
-
-    console.log(categories);
   };
 
   useEffect(() => {
@@ -44,10 +45,11 @@ const CategoryContent = () => {
   }, [categories, selectedCategoryObject]);
 
   useEffect(() => {
-    console.log('load category')
-    console.log('selected is: ' + selectedCategory)
-    handleLoadCategory();
-  })
+  }, [currentCategory])
+
+  useEffect(() => {
+
+  }, [categories])
 
   interface InfoProp {
     type: string;
@@ -83,7 +85,12 @@ const CategoryContent = () => {
       >
         {/* show the image */}
         <img src={catmeme} className="size-[150px] rounded-[5px] shadow-lg" />
-        {currentCategory && <Info type={currentCategory.type} name={currentCategory.name} date_created={currentCategory.date_created} />}
+        {currentCategory && 
+          <Info 
+            type={currentCategory.type} 
+            name={currentCategory.name} 
+            date_created={currentCategory.date_created} 
+          />}
         
       </section>
 
