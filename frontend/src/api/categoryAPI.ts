@@ -34,11 +34,10 @@ export const addCategoryAPI = async (category: CategoryPropAPI) => {
   if (response.request.status !== 200) {
     throw new Error('Fetching Categories Error: Response is not 200');
   }
-  console.log('response OK for adding catagery')
+  console.log('response OK for adding category');
 }
 
 export const updateCategoryAPI = async (category: CategoryUpdatePropAPI) => {
-  console.log(category);
   const response = await api.patch(`/categories/${category.id}`, {
     name: category.name,
     type: category.type,
@@ -48,5 +47,15 @@ export const updateCategoryAPI = async (category: CategoryUpdatePropAPI) => {
   if (response.request.status !== 200) {
     throw new Error('Update Category Error: Response is not 200');
   }
-  console.log('response OK for updating catagery')
+  console.log('response OK for updating category');
+}
+
+export const deleteCategoryAPI = async (categoryId: number | null) => {
+  console.log(categoryId);
+  if (!categoryId) return;
+  const response = await api.delete(`/categories/${categoryId}`);
+  if (response.request.status !== 200) {
+    throw new Error('Delete Category Error: Response is not 200');
+  }
+  console.log('response OK for deleting category');
 }

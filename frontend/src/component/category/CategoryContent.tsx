@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { CategoryComponentProp } from "@/features/category/CategorySlice";
+import DeleteCategoryModal from "../modal/CategoryDeleteModal";
 
 import catmeme from '../../assets/catmeme.png';
 
@@ -14,27 +15,39 @@ import { formatCreatedDate } from "../../utils/date";
 
 const CategoryContent = () => {
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
+  const selectedCategoryObject = useSelector((state: RootState) => state.category.selectedCategoryObject);
   const categories = useSelector((state: RootState) => state.category.categories);
 
-  const [baseColor, setBaseColor] = useState<string>('#bdbdbd');
+  const [baseColor, setBaseColor] = useState<string | null | undefined>('#bdbdbd');
 
   const [currentCategory, setCurrentCategory] = useState<CategoryComponentProp | null>(null);
 
   const handleLoadCategory = () => {
-    if (categories.length !== 0) {
+    if (Object.keys(categories).length !== 0) {
       if (selectedCategory) {
-        setCurrentCategory(categories[selectedCategory - 1]);
-        setBaseColor(categories[selectedCategory - 1].colour)
+        console.log(selectedCategory)
+        setCurrentCategory(selectedCategoryObject);
+        if (selectedCategoryObject) {
+          setBaseColor(selectedCategoryObject?.colour);
+        }
       } else {
         setCurrentCategory(categories[0]);
-        setBaseColor(categories[0].colour)
+        setBaseColor(categories[0].colour);
       }
     }
+
+    console.log(categories);
   };
 
   useEffect(() => {
     handleLoadCategory();
-  }, [selectedCategory, categories]);
+  }, [categories, selectedCategoryObject]);
+
+  useEffect(() => {
+    console.log('load category')
+    console.log('selected is: ' + selectedCategory)
+    handleLoadCategory();
+  })
 
   interface InfoProp {
     type: string;
@@ -56,14 +69,11 @@ const CategoryContent = () => {
       </section>
     );
   };
-  /*
-  Header is: #9168a5 --> #6f507f (0.14705882352941178 darker), #9168a5 --> # (0.208 darker)
-  Password List is: #9168a5 --> #3b2a43 (0.2823529411764706 darker)
-  Fixed color darkest: #101010
-  */
+
   return (
     <section className="flex flex-col absolute top-[40px] left-[252px] h-[680px] w-[671px] rounded-[10px]">
       {/* HEADER */}
+      <DeleteCategoryModal />
       <section
         style={{
           background: `linear-gradient(to bottom, ${baseColor} 0%, ${getDarkerColor(baseColor, 0.18)} 40%, ${getDarkerColor(baseColor, 0.22)} 100%)`,

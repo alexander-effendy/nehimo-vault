@@ -111,3 +111,9 @@ declare module 'react-icons/io5' {
   import { IconBaseProps } from 'react-icons';
   export const IoColorPaletteOutline: React.FC<IconBaseProps>;
 }
+
+declare module 'react-icons/ai' {
+  import * as React from 'react';
+  import { IconBaseProps } from 'react-icons';
+  export const AiFillApple: React.FC<IconBaseProps>;
+}
