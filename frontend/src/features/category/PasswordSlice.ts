@@ -12,10 +12,12 @@ export interface PasswordComponentProp {
 
 interface PasswordState {
   passwords: PasswordComponentProp[];
+  addPasswordModalOpen: boolean;
 }
 
 const initialState: PasswordState = {
   passwords: [],
+  addPasswordModalOpen: false,
 }
 
 const passwordSlice = createSlice({
@@ -24,9 +26,15 @@ const passwordSlice = createSlice({
   reducers: {
     setPasswords(state, action) {
       state.passwords = action.payload;
-    }
+    },
+    addPassword(state, action) {
+      state.passwords.push(action.payload);
+    },
+    setAddPasswordModalOpen(state, action) {
+      state.addPasswordModalOpen= action.payload;
+    },
   },
 });
 
-export const { setPasswords } = passwordSlice.actions;
+export const { setPasswords, addPassword, setAddPasswordModalOpen } = passwordSlice.actions;
 export default passwordSlice.reducer;

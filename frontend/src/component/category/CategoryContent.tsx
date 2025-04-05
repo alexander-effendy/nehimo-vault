@@ -13,6 +13,7 @@ import PasswordList from "../password/PasswordList";
 import getDarkerColor from "../../utils/ColourGenerator";
 import { formatCreatedDate } from "../../utils/date";
 import { categoryChooser } from "../../utils/CategoryUtils";
+import AddPasswordModal from "../modal/PasswordAddModal";
 
 const CategoryContent = () => {
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
@@ -24,11 +25,9 @@ const CategoryContent = () => {
   const [currentCategory, setCurrentCategory] = useState<CategoryComponentProp | null | undefined>(null);
 
   const handleLoadCategory = () => {
-    console.log('loadd')
     if (Object.keys(categories).length !== 0) {
       if (selectedCategory) {
         const currentCategory = categoryChooser(categories, selectedCategory);
-        console.log(currentCategory)
         setCurrentCategory(currentCategory);
         if (selectedCategoryObject) {
           setBaseColor(currentCategory?.colour);
@@ -76,6 +75,7 @@ const CategoryContent = () => {
     <section className="flex flex-col absolute top-[40px] left-[252px] h-[680px] w-[671px] rounded-[10px]">
       {/* HEADER */}
       <DeleteCategoryModal />
+      <AddPasswordModal />
       <section
         style={{
           background: `linear-gradient(to bottom, ${baseColor} 0%, ${getDarkerColor(baseColor, 0.18)} 40%, ${getDarkerColor(baseColor, 0.22)} 100%)`,

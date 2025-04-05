@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
 
-############################################################
-######################### CATEGORY #########################
-############################################################
+######################################################################################
+###################################### CATEGORY ######################################
+######################################################################################
 
 # POST CATEGORIES
 def create_category(db: Session, category: schemas.CategoryCreate):
@@ -40,9 +40,9 @@ def delete_category(db: Session, categoryId: int):
         db.commit()
     return db_category
 
-############################################################
-######################### PASSWORD #########################
-############################################################
+######################################################################################
+###################################### PASSWORD ######################################
+######################################################################################
 
 # GET ALL CATEGORIES
 def get_passwords(db: Session, skip: int = 0, limit: int = 10):
@@ -51,3 +51,13 @@ def get_passwords(db: Session, skip: int = 0, limit: int = 10):
 # GET SPECIFIC CATEGORIES
 def get_passwords_by_category(db: Session, category_id: int):
     return db.query(models.Password).filter(models.Password.categoryid == category_id).all()
+
+# POST PASSWORD
+def create_password(db: Session, password: schemas.PasswordCreate):
+    print('creating password')
+    print(password)
+    db_password = models.Password(categoryid=password.categoryid, usage=password.usage, username=password.username, password=password.password)
+    db.add(db_password)
+    db.commit()
+    db.refresh(db_password)
+    return db_password

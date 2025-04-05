@@ -1,11 +1,11 @@
 import api from "./utils";
 
-// interface PasswordPropAPI {
-//   categoryId: number | null;
-//   usage: string | null;
-//   username: string | null;
-//   password: string | null;
-// }
+interface PasswordPropAPI {
+  categoryId: number | null | undefined;
+  usage: string | null;
+  username: string | null;
+  password: string | null;
+}
 
 export const fetchPasswords = async () => {
   const response = await api.get('/passwords/');
@@ -23,6 +23,20 @@ export const fetchPasswordsByCategoryId = async (categoryid?: number) => {
   return response.data;
 }
 
+export const addPasswordAPI = async (password: PasswordPropAPI) => {
+  try {
+    const response = await api.post('/passwords', {
+      categoryid: password.categoryId,
+      usage: password.usage,
+      username: password.username,
+      password: password.password,
+    });
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
 // export const AddPasswordAPI = async (password: PasswordPropAPI) => {
 //   const response = await api.post('/passwords', {
 //     usage: password.usage,
