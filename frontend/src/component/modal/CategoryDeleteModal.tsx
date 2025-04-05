@@ -50,8 +50,8 @@ const DeleteCategoryModal = () => {
 
   return (
     <Dialog open={deleteCategoryModalOpen} onClose={() => handleModalOpen(false)} className="relative z-280">
-      <div className="fixed inset-0 flex w-screen items-center">
-        <DialogPanel className="absolute right-40 max-w-lg border border-gray-700 bg-black text-white rounded-[10px] w-[400px]">
+      <div className="fixed inset-0 flex w-screen items-center justify-center">
+        <DialogPanel className="max-w-lg border border-gray-700 bg-black text-white rounded-[10px] w-[500px]">
           <DialogTitle className="flex items-center justify-center py-3 font-bold mb-2 border-b-[1px] border-gray-700">Delete Category</DialogTitle>
           <section className="flex flex-col gap-1 text-[14px] p-4">
             <span>Are you sure you want to delete the category <span className="font-bold text-blue-300">{selectedCategoryObject?.name}</span>?</span>

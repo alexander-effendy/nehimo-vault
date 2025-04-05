@@ -38,13 +38,10 @@ const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type }) =
       <img className="size-[45px] rounded-[5px] border-[1px] border-gray-500"
         src={catmeme}
       />
-
-      {/* name and type */}
       <section className="flex flex-col items-start flex-grow p-1 px-2">
         <span className="text-[13px] text-white">{name}</span>
         <span className="text-[12px] text-gray-500">{type}</span>
       </section>
-
     </div>
   )
 }

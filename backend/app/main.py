@@ -69,20 +69,6 @@ def delete_category(category_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Category not found")
     return db_category
 
-# @app.put("/categories/{category_id}", response_model=schemas.CategoryResponse)
-# def update_category(category_id: int, category: schemas.CategoryCreate, db: Session = Depends(get_db)):
-#     db_category = crud.update_category(db, category_id, category)
-#     if not db_category:
-#         raise HTTPException(status_code=404, detail="Category not found")
-#     return db_category
-
-# @app.delete("/categories/{category_id}")
-# def delete_category(category_id: int, db: Session = Depends(get_db)):
-#     db_category = crud.delete_category(db, category_id)
-#     if not db_category:
-#         raise HTTPException(status_code=404, detail="Category not found")
-#     return {"message": "Category deleted successfully"}
-
 ##########################################################################################################
 ################################################ PASSWORD ################################################
 ##########################################################################################################
@@ -100,6 +86,11 @@ def read_passwords_by_category(category_id: int, db: Session = Depends(get_db)):
     print(category_id)
     db_passwords = crud.get_passwords_by_category(db, category_id)
     print(db_passwords)
-    # if not db_passwords:
-    #     raise HTTPException(status_code=404, detail="Passwords with the category not found")
-    # return db_passwords
+    if not db_passwords:
+        raise HTTPException(status_code=404, detail="Passwords with the category not found")
+    return db_passwords
+
+# ADD PASSWORD
+@app.post("/passwords/", response_model=schemas.PasswordResponse)
+def create_password(password: schemas.PasswordCreate, db: Session = Depends(get_db)):
+    return crud.create_password(db, password)

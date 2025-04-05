@@ -37,9 +37,11 @@ const ModalOverlay = () => {
 const App = () => {
   const [isLocked, setIsLocked] = useState<boolean>(false);
   const addCategoryModalOpen = useSelector((state: RootState) => state.category.addCategoryModalOpen);
+  const deleteCategoryModalOpen = useSelector((state: RootState) => state.category.deleteCategoryModalOpen);
+  const addPasswordModalOpen = useSelector((state: RootState) => state.password.addPasswordModalOpen);  
 
   useEffect(() => {
-    // console.log('App.tsx starting');
+    // void
   }, []);
 
   return (
@@ -52,7 +54,7 @@ const App = () => {
       />
 
       <AddCategoryModal />
-      {addCategoryModalOpen && <ModalOverlay />}
+      {(addCategoryModalOpen || deleteCategoryModalOpen || addPasswordModalOpen) && <ModalOverlay />}
       {isLocked && <LockedOverlay />}
 
       {/* Category List */}

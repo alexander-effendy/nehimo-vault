@@ -18,8 +18,6 @@ const ColourPicker = () => {
   const categories = useSelector((state: RootState) => state.category.categories);
 
   const updateCategoryColor = (categories: CategoryComponentProp[], selectedCategory: number, newColor: string) => {
-    console.log(categories);
-    console.log(selectedCategory)
     const updatedCategories = categories.map((category, _) => {
       if (category.id === selectedCategory) {
         return {
@@ -29,19 +27,13 @@ const ColourPicker = () => {
       }
       return category;
     });
-    console.log(updatedCategories);
     return updatedCategories;
   }
 
   const handleColorChange = async (newColor: ColorResult) => {
     if (!selectedCategory) return;
-    // call the api
-    console.log('selected category id is: ' + selectedCategory);
-    console.log('so we should change the category component this:');
-
     // update redux
     const newCategories = updateCategoryColor(categories, selectedCategory, newColor.hex);
-    console.log(newCategories);
     dispatch(setCategories(newCategories));
 
     // update database from API

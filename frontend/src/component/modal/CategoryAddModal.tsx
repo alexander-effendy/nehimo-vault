@@ -19,8 +19,6 @@ const AddCategoryModal = () => {
   const [showWarning, setShowWarning] = useState<boolean>(false);
 
   const handleAddCategory = async () => {
-    console.log(categoryNameInput, categoryTypeInput);
-
     if (!categoryNameInput || !categoryTypeInput) {
       setShowWarning(true);
       return;
@@ -44,7 +42,6 @@ const AddCategoryModal = () => {
     };
 
     const nc = await addCategoryAPI(newCategoryAPI);
-    console.log(nc);
     dispatch(addCategory(nc));
 
     handleModalOpen(false);
