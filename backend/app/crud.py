@@ -30,24 +30,15 @@ def update_category(db: Session, category_id: int, category_update: schemas.Cate
             setattr(db_category, field, value)
         db.commit()
         db.refresh(db_category)
-    return db_category;
+    return db_category
 
-# def update_category(db: Session, category_id: int, category_update: schemas.CategoryCreate):
-#     db_category = get_category(db, category_id)
-#     if db_category:
-#         db_category.name = category_update.name
-#         db_category.type = category_update.type
-#         db_category.icon = category_update.icon
-#         db.commit()
-#         db.refresh(db_category)
-#     return db_category
-
-# def delete_category(db: Session, category_id: int):
-#     db_category = get_category(db, category_id)
-#     if db_category:
-#         db.delete(db_category)
-#         db.commit()
-#     return db_category
+# DELETE CATEGORY
+def delete_category(db: Session, categoryId: int):
+    db_category = get_category(db, categoryId)
+    if db_category:
+        db.delete(db_category)
+        db.commit()
+    return db_category
 
 ############################################################
 ######################### PASSWORD #########################

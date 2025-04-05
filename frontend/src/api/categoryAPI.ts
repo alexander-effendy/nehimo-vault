@@ -2,18 +2,18 @@ import api from "./utils";
 import { IconType } from "react-icons";
 
 interface CategoryPropAPI {
-  name: string | null;
-  type: string | null;
-  icon: IconType | null;
-  colour: string | null;
+  name: string | null | undefined;
+  type: string | null | undefined;
+  icon: IconType | null | undefined;
+  colour: string | null | undefined;
 }
 
 interface CategoryUpdatePropAPI {
-  id: number | null;
-  name: string | null;
-  type: string | null;
-  icon: IconType | null;
-  colour: string | null;
+  id: number | null | undefined;
+  name: string | null | undefined;
+  type: string | null | undefined;
+  icon: IconType | null | undefined;
+  colour: string | null | undefined;
 }
 
 export const fetchCategories = async () => {
@@ -34,11 +34,11 @@ export const addCategoryAPI = async (category: CategoryPropAPI) => {
   if (response.request.status !== 200) {
     throw new Error('Fetching Categories Error: Response is not 200');
   }
-  console.log('response OK for adding catagery')
+  console.log('response OK for adding category');
+  return response.data;
 }
 
 export const updateCategoryAPI = async (category: CategoryUpdatePropAPI) => {
-  console.log(category);
   const response = await api.patch(`/categories/${category.id}`, {
     name: category.name,
     type: category.type,
@@ -48,5 +48,15 @@ export const updateCategoryAPI = async (category: CategoryUpdatePropAPI) => {
   if (response.request.status !== 200) {
     throw new Error('Update Category Error: Response is not 200');
   }
-  console.log('response OK for updating catagery')
+  console.log('response OK for updating category');
+}
+
+export const deleteCategoryAPI = async (categoryId: number | null) => {
+  console.log(categoryId);
+  if (!categoryId) return;
+  const response = await api.delete(`/categories/${categoryId}`);
+  if (response.request.status !== 200) {
+    throw new Error('Delete Category Error: Response is not 200');
+  }
+  console.log('response OK for deleting category');
 }

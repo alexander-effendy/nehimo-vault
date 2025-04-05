@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from "@/store/store";
 
-import { setSelectedCategory } from '../../features/category/CategorySlice';
+import { categoryChooser } from '../../utils/CategoryUtils';
 
-import { CategoryComponentProp } from "@/features/category/CategorySlice";
+import { setSelectedCategory, setSelectedCategoryObject, CategoryComponentProp } from '../../features/category/CategorySlice';
 
 import catmeme from '../../assets/catmeme.png';
 import { useEffect } from "react";
@@ -11,13 +11,23 @@ import { useEffect } from "react";
 const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type }) => {
   const dispatch = useDispatch();
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
+  const afterDeleteEffect = useSelector((state: RootState) => state.category.afterDeleteEffect);
+  const categories = useSelector((state: RootState) => state.category.categories);
 
-  const handleCategoryClick = (id: number) => {
+  const handleCategoryClick = (id: number | null) => {
     dispatch(setSelectedCategory(id));
+    const cob = categoryChooser(categories, id);
+    dispatch(setSelectedCategoryObject(cob));
   }
 
   useEffect(() => {
-  }, [selectedCategory])
+    // void
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    const categoryId = categories[0]?.id || null;
+    handleCategoryClick(categoryId);
+  }, [afterDeleteEffect])
 
   return (
     <div 

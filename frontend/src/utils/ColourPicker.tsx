@@ -7,19 +7,21 @@ import { CategoryComponentProp, setCategories } from '../features/category/Categ
 import { updateCategoryAPI } from '../api/CategoryAPI';
 
 const StyledCirclePicker = styled(CirclePicker)`
-  width: 100% !important;
-  height: 100% !important;
-  display: flex !important;
+  padding: 5px !important;
 `;
 
 const ColourPicker = () => {
   const dispatch = useDispatch();
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
+  const selectedCategoryObject = useSelector((state: RootState) => state.category.selectedCategoryObject);
+
   const categories = useSelector((state: RootState) => state.category.categories);
 
   const updateCategoryColor = (categories: CategoryComponentProp[], selectedCategory: number, newColor: string) => {
-    const updatedCategories = categories.map((category, index) => {
-      if (selectedCategory - 1 === index) {
+    console.log(categories);
+    console.log(selectedCategory)
+    const updatedCategories = categories.map((category, _) => {
+      if (category.id === selectedCategory) {
         return {
           ...category,
           colour: newColor,
@@ -27,7 +29,7 @@ const ColourPicker = () => {
       }
       return category;
     });
-
+    console.log(updatedCategories);
     return updatedCategories;
   }
 
@@ -39,31 +41,27 @@ const ColourPicker = () => {
 
     // update redux
     const newCategories = updateCategoryColor(categories, selectedCategory, newColor.hex);
+    console.log(newCategories);
     dispatch(setCategories(newCategories));
-
-    console.log(categories[selectedCategory - 1])
-
-    const currentCategory = categories[selectedCategory - 1];
-    console.log(selectedCategory, newColor.hex)
 
     // update database from API
     await updateCategoryAPI({
-      id: currentCategory.id,
+      id: selectedCategoryObject?.id,
       colour: newColor.hex,
-      name: currentCategory.name,
-      type: currentCategory.type,
-      icon: currentCategory.icon,
+      name: selectedCategoryObject?.name,
+      type: selectedCategoryObject?.type,
+      icon: selectedCategoryObject?.icon,
     });
-  }
+  };
 
   return (
     <div 
-      className="z-300 absolute left-25 top-58 w-[262px] h-[140px] rounded-[10px] flex items-center justify-center p-1 border-[1px] border-gray-700"
-      style={{ 
-        background: `linear-gradient(to bottom, #636363 20%, #101010 100%)`,
-      }}
+      className="z-300 bg-gray-800 absolute left-30 top-58 w-[262pxs] h-[140pxs] rounded-[10px] flex items-center justify-center p-1 border-[1px] border-gray-700"
+      // style={{
+      //   background: `linear-gradient(to bottom, #101010 100%)`,
+      // }}
     >
-      <StyledCirclePicker onChangeComplete={handleColorChange} />
+      <StyledCirclePicker circleSize={15} circleSpacing={6} width={'200px'} onChangeComplete={handleColorChange} />
     </div>
   )
 }

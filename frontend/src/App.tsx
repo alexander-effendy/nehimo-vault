@@ -14,7 +14,7 @@ import "./App.css";
 
 // importing icons
 import { TfiLock } from "react-icons/tfi";
-import AddCategoryModal from "./component/modal/AddCategoryModal";
+import AddCategoryModal from "./component/modal/CategoryAddModal";
 
 // ################################################################################################## //
 
@@ -39,7 +39,7 @@ const App = () => {
   const addCategoryModalOpen = useSelector((state: RootState) => state.category.addCategoryModalOpen);
 
   useEffect(() => {
-    console.log('App.tsx starting');
+    // console.log('App.tsx starting');
   }, []);
 
   return (

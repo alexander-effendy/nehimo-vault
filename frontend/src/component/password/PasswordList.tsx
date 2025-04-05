@@ -1,16 +1,14 @@
-// interface PasswordListProp {
-//   categoryId: number;
-// }
-
-import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
+import { GoPlus } from "react-icons/go";
 
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "@/store/store";
 import { useQuery } from "@tanstack/react-query";
+
+import { setDeleteCategoryModalOpen } from "../../features/category/CategorySlice";
 
 import { fetchPasswords } from "../../api/PasswordAPI";
 import { setPasswords } from "../../features/category/PasswordSlice";
@@ -22,6 +20,7 @@ import ColourPicker from "../../utils/ColourPicker";
 
 import { FaListUl } from "react-icons/fa6";
 import { IoColorPaletteOutline } from "react-icons/io5";
+
 
 const PasswordList = () => {
   const dispatch = useDispatch();
@@ -46,6 +45,8 @@ const PasswordList = () => {
   useEffect(() => {
     if (!isError && data) {
       dispatch(setPasswords(data));
+      const currentPasswords = data.filter((password: PasswordComponentProp) => password.categoryid === selectedCategory);
+      setPasswordsByCategory(currentPasswords);
     }
   }, [isError, data]);
 
@@ -68,20 +69,24 @@ const PasswordList = () => {
   }, [colourPickerOpen]);
 
   
-  if (isLoading) return <div>Retrieving password loading</div>
-  if (error) return <div>Retrieving password list error</div>
+  if (isLoading) return <div></div>
+  if (error) return <div>Error!</div>
+
+  const handleDeleteCategoryModalOpen = () => {
+    dispatch(setDeleteCategoryModalOpen(true));
+  }
 
   return (
     <div className="flex flex-col">
       <section className="border-b-[1px]s border-gray-500 w-full h-[80px] flex px-5 justify-between">
         <section className="flex my-auto gap-4 bg-blacsk items-center">
-          <button className="text-gray-400 hover:text-white hover:cursor-pointer">
-            <FiEdit size={25} />
+          <button className="text-gray-400 hover:text-white hover:cursor-pointer hover:bg-gray-500 rounded-full transition-all duration-400 p-1">
+            <GoPlus size={25} />
           </button>
-          <button className="text-gray-400 hover:text-white hover:cursor-pointer">
-            <RiDeleteBin6Line size={25} />
+          <button className="text-gray-400 hover:text-white hover:cursor-pointer p-1">
+            <RiDeleteBin6Line onClick={() => handleDeleteCategoryModalOpen()} size={25} />
           </button>
-          <button className="text-gray-400 hover:text-white hover:cursor-pointer">
+          <button className="text-gray-400 hover:text-white hover:cursor-pointer p-1">
             <IoColorPaletteOutline onClick={() => setColourPickerOpen(prevState => !prevState)} size={25} />
           </button>
           {colourPickerOpen && <div ref={colourPickerRef}><ColourPicker /></div>}

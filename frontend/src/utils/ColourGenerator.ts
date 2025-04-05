@@ -16,7 +16,8 @@ const hslToHex = (hsl: HSL): string => {
   return colorsys.hslToHex(h * 360, s * 100, l * 100);
 };
 
-const getDarkerColor = (hexColor: string, darknessDifference: number): string => {
+const getDarkerColor = (hexColor: string | undefined | null, darknessDifference: number): string => {
+  if (!hexColor) return '#bdbdbd';
   const hsl = hexToHSL(hexColor);
   const darkerL = Math.max(0, Math.min(1, hsl.l - darknessDifference));
   return hslToHex({ ...hsl, l: darkerL });
