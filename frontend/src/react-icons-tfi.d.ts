@@ -117,3 +117,21 @@ declare module 'react-icons/ai' {
   import { IconBaseProps } from 'react-icons';
   export const AiFillApple: React.FC<IconBaseProps>;
 }
+
+declare module 'react-icons/fa' {
+  import * as React from 'react';
+  import { IconBaseProps } from 'react-icons';
+  export const FaApple: React.FC<IconBaseProps>;
+}
+declare module 'react-icons/fa' {
+  import * as React from 'react';
+  import { IconBaseProps } from 'react-icons';
+  export const FaEyeSlash: React.FC<IconBaseProps>;
+}
+
+
+declare module 'react-icons/fa' {
+  import * as React from 'react';
+  import { IconBaseProps } from 'react-icons';
+  export const FaEye: React.FC<IconBaseProps>;
+}
