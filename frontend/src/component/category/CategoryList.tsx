@@ -37,6 +37,7 @@ const CategoryList = () => {
   // use effect for categories
   useEffect(() => {
     if (!isCategoryError && categoryData) {
+      if (Object.keys(categoryData).length === 0) return;
       categoryData.sort((a: CategoryComponentProp, b: CategoryComponentProp) => a.id - b.id);
       dispatch(setCategories(categoryData));
       if (categoryData.length > 0) dispatch(setSelectedCategory(1));
