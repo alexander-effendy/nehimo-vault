@@ -1,7 +1,7 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { CategoryComponentProp, setDeleteCategoryModalOpen, setCategories, setSelectedCategoryObject, setSelectedCategory, setAfterDeleteEffect } from "../../features/category/CategorySlice";
+import { CategoryComponentProp, setDeleteCategoryModalOpen, setCategories, setSelectedCategoryObject, setSelectedCategory, setAfterDeleteEffect } from "../../features/CategorySlice";
 
 import { deleteCategoryAPI } from "../../api/CategoryAPI";
 import { useEffect, useState } from "react";

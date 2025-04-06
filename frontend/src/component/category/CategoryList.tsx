@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { RootState } from "@/store/store";
 
 // IMPORT INTERFACES
-import { CategoryComponentProp, setSelectedCategory } from "../../features/category/CategorySlice";
+import { CategoryComponentProp, setSelectedCategory } from "../../features/CategorySlice";
 
 // IMPORT COMPONENTS
 import CategoryComponent from "./CategoryComponent";
@@ -14,7 +14,7 @@ import SearchBar from "../SearchBar";
 import { useDispatch, useSelector } from 'react-redux';
 
 // IMPORT REDUX SLICES
-import { setCategories } from '../../features/category/CategorySlice';
+import { setCategories } from '../../features/CategorySlice';
 
 // import APIs
 import { fetchCategories } from "../../api/CategoryAPI";
@@ -64,12 +64,14 @@ const CategoryList = () => {
   if (categoryError) return <div>Error fetching categories: {categoryError.message}</div>;
 
   return (
-    <section className="flex flex-col bg-[#101010] absolute top-[40px] left-[7px] h-[680px] w-[238px] rounded-[10px] px-2">
-      <HeaderCategory />
-      <SearchBar />
+    <section className="flex flex-col bg-[#101010] absolute top-[40px] left-[7px] h-[680px] w-[238px] rounded-[10px] pl-2">
+      <section className="pr-2">
+        <HeaderCategory />
+        <SearchBar />
+      </section>
       
       {/* ACTUAL CATEGORY LIST */}
-      <section className="flex flex-col rounded-[10px] h-[600px] soft-scrollbar-right pt-2">
+      <section className="flex flex-col rounded-[10px] h-[600px] soft-scrollbar-right pt-2 pb-2">
         {localCategoryList.map((item: CategoryComponentProp, index: number) => (
           <CategoryComponent 
             key={index}

@@ -2,7 +2,7 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 
-import {addPassword, setAddPasswordModalOpen } from "../../features/category/PasswordSlice";
+import {addPassword, setAddPasswordModalOpen } from "../../features/PasswordSlice";
 import { useState } from "react";
 import { addPasswordAPI } from "../../api/PasswordAPI";
 

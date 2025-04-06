@@ -1,7 +1,7 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { setAddCategoryModalOpen, addCategory } from "../../features/category/CategorySlice";
+import { setAddCategoryModalOpen, addCategory } from "../../features/CategorySlice";
 import { useState } from "react";
 
 import { categoryChooseHighestId } from "../../utils/CategoryUtils";

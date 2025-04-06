@@ -1,7 +1,7 @@
 import { AiFillApple } from "react-icons/ai";
 import { GoPlus } from "react-icons/go";
 import { useDispatch } from 'react-redux';
-import { setAddCategoryModalOpen } from '../../features/category/CategorySlice';
+import { setAddCategoryModalOpen } from '../../features/CategorySlice';
 
 const HeaderCategory = () => {
   const dispatch = useDispatch();

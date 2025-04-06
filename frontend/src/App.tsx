@@ -30,6 +30,7 @@ const App = () => {
   const addCategoryModalOpen = useSelector((state: RootState) => state.category.addCategoryModalOpen);
   const deleteCategoryModalOpen = useSelector((state: RootState) => state.category.deleteCategoryModalOpen);
   const addPasswordModalOpen = useSelector((state: RootState) => state.password.addPasswordModalOpen);  
+  
 
   useEffect(() => {
     // void
@@ -41,7 +42,7 @@ const App = () => {
       <TfiLock
         onClick={() => setIsLocked((isLocked) => !isLocked)}
         size={15}
-        className="z-230 hover:cursor-pointer text-white absolute top-3 right-3 transition-all duration-1000 hover:text-yellow-300 "
+        className="z-330 hover:cursor-pointer text-white absolute top-3 right-3 transition-all duration-1000 hover:text-yellow-300 "
       />
 
       <AddCategoryModal />

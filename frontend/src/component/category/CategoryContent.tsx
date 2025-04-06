@@ -2,7 +2,7 @@ import { RootState } from "@/store/store";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
-import { CategoryComponentProp } from "@/features/category/CategorySlice";
+import { CategoryComponentProp } from "@/features/CategorySlice";
 import DeleteCategoryModal from "../modal/CategoryDeleteModal";
 
 import catmeme from '../../assets/catmeme.png';
