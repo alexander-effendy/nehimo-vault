@@ -2,7 +2,7 @@
 import { IoIosSearch } from "react-icons/io";
 import { useDispatch } from "react-redux";
 
-import { setSearchCategory } from '../features/category/CategorySlice';
+import { setSearchCategory } from '../features/CategorySlice';
 
 const SearchBar = () => {
   const dispatch = useDispatch();

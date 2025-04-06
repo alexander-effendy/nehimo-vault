@@ -3,7 +3,7 @@ import { RootState } from "@/store/store";
 
 import { categoryChooser } from '../../utils/CategoryUtils';
 
-import { setSelectedCategory, setSelectedCategoryObject, CategoryComponentProp } from '../../features/category/CategorySlice';
+import { setSelectedCategory, setSelectedCategoryObject, CategoryComponentProp } from '../../features/CategorySlice';
 
 import catmeme from '../../assets/catmeme.png';
 import { useEffect } from "react";
@@ -33,7 +33,7 @@ const CategoryComponent:React.FC<CategoryComponentProp> = ({ id, name, type }) =
     <div 
       key={id}
       onClick={() => handleCategoryClick(id)}
-      className={`${selectedCategory === id ? 'bg-stone-800' : 'hover:bg-stone-900'} flex h-[52px] rounded-[5px] p-1 hover:cursor-pointer`}
+      className={`${selectedCategory === id ? 'bg-stone-800' : 'hover:bg-stone-900'} flex h-[52px] rounded-[5px] p-1 hover:cursor-pointer w-[98%]`}
     >
       <img className="size-[45px] rounded-[5px] border-[1px] border-gray-500"
         src={catmeme}

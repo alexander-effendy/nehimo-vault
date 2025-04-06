@@ -1,4 +1,4 @@
-import { CategoryComponentProp } from "../features/category/CategorySlice"
+import { CategoryComponentProp } from "../features/CategorySlice"
 
 export const categoryChooser = (categories: CategoryComponentProp[], id: number | null) => {
   if (!id) return;

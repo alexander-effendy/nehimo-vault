@@ -1,7 +1,7 @@
 // src/store/store.js
 import { configureStore } from '@reduxjs/toolkit';
-import categoryReducer from '../features/category/CategorySlice';
-import passwordReducer from '../features/category/PasswordSlice';
+import categoryReducer from '../features/CategorySlice';
+import passwordReducer from '../features/PasswordSlice';
 
 export const store = configureStore({
   reducer: {

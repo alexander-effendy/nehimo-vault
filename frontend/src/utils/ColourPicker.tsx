@@ -2,7 +2,7 @@ import { CirclePicker, ColorResult } from 'react-color';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from "@/store/store";
 import styled from 'styled-components';
-import { CategoryComponentProp, setCategories } from '../features/category/CategorySlice';
+import { CategoryComponentProp, setCategories } from '../features/CategorySlice';
 
 import { updateCategoryAPI } from '../api/CategoryAPI';
 

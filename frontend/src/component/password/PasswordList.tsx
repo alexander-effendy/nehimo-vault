@@ -8,13 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useQuery } from "@tanstack/react-query";
 
-import { setDeleteCategoryModalOpen } from "../../features/category/CategorySlice";
-import {setAddPasswordModalOpen } from "../../features/category/PasswordSlice";
+import { setDeleteCategoryModalOpen } from "../../features/CategorySlice";
+import {setAddPasswordModalOpen } from "../../features/PasswordSlice";
 
 import { fetchPasswords } from "../../api/PasswordAPI";
-import { setPasswords } from "../../features/category/PasswordSlice";
+import { setPasswords } from "../../features/PasswordSlice";
 
-import { PasswordComponentProp } from "../../features/category/PasswordSlice";
+import { PasswordComponentProp } from "../../features/PasswordSlice";
 
 import PasswordComponent from "./PasswordComponent";
 import ColourPicker from "../../utils/ColourPicker";
@@ -113,10 +113,10 @@ const PasswordList = () => {
         <span className="ml-[20px]">Usage</span>
         <span className="ml-[117px]">Username</span>
         <span className="ml-[108px] highlightable">Password</span>
-        <span className="ml-[115px]">Created</span>
+        <span className="ml-[107px]">Created</span>
       </section>
       {/* map the list of passwords here (within a password list) */}
-      <section className="flex flex-col mt-3 overflow-y-auto h-[340px]">
+      <section className="flex flex-col mt-3 soft-scrollbar-password-right h-[340px]">
         {passwordsByCategory.map((password, index) => (
           <PasswordComponent
             key={password.id}
