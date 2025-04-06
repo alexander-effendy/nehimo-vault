@@ -8,11 +8,13 @@ interface PasswordPropAPI {
 }
 
 export const fetchPasswords = async () => {
-  const response = await api.get('/passwords/');
-  if (response.request.status !== 200) {
-    throw new Error('Fetching Passwords Error: Response is not 200');
+  try {
+    const response = await api.get('/passwords/');
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
   }
-  return response.data;
 }
 
 export const fetchPasswordsByCategoryId = async (categoryid?: number) => {
@@ -37,10 +39,3 @@ export const addPasswordAPI = async (password: PasswordPropAPI) => {
     console.log(error);
   }
 }
-// export const AddPasswordAPI = async (password: PasswordPropAPI) => {
-//   const response = await api.post('/passwords', {
-//     usage: password.usage,
-//     username: password.username,
-
-//   })
-// }

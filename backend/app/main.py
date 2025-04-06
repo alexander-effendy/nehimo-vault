@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from . import models, schemas, crud
 from .database import engine, SessionLocal, Base
 from fastapi.middleware.cors import CORSMiddleware
+import json
 
 # Create database tables (for development; in production, consider migrations)
 Base.metadata.create_all(bind=engine)
@@ -51,8 +52,6 @@ def read_category(category_id: int, db: Session = Depends(get_db)):
 # UPDATE CATEGORY
 @app.patch("/categories/{category_id}", response_model=schemas.CategoryResponse)
 def update_category(category_id: int, category_update: schemas.CategoryCreate, db: Session = Depends(get_db)):
-    print('update patch category called')
-    print(category_id)
     db_category = crud.update_category(db, category_id, category_update)
     if db_category is None:
         raise HTTPException(status_code=404, detail="Category not found")
@@ -61,9 +60,6 @@ def update_category(category_id: int, category_update: schemas.CategoryCreate, d
 # DELETE CATEGORY
 @app.delete("/categories/{category_id}", response_model=schemas.CategoryResponse)
 def delete_category(category_id: int, db: Session = Depends(get_db)):
-    print('delete category with the id: ')
-    print(category_id)
-    print(category_id)
     db_category = crud.delete_category(db, category_id)
     if db_category is None:
         raise HTTPException(status_code=404, detail="Category not found")
@@ -82,10 +78,7 @@ def read_passwords(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)
 # GET SPECIFIC PASSWORDS FOR A SPECIFIC CATEGORY
 @app.get("/passwords/{category_id}", response_model=schemas.PasswordResponse)
 def read_passwords_by_category(category_id: int, db: Session = Depends(get_db)):
-    print('reading passsword by category:')
-    print(category_id)
     db_passwords = crud.get_passwords_by_category(db, category_id)
-    print(db_passwords)
     if not db_passwords:
         raise HTTPException(status_code=404, detail="Passwords with the category not found")
     return db_passwords

@@ -8,7 +8,7 @@ const PasswordComponent: React.FC<PasswordComponentProp> = ({ id, categoryid, us
 
   // const adjust = 0;
   return (
-    <div key={categoryid} className="relative flex items-center h-[40px] text-[11px] text-gray-500 px-[34px]">
+    <div key={categoryid} className="shrink-0 relative flex items-center h-[40px] text-[11px] text-gray-500 px-[34px]">
       <span className="w-[25px]">{id}</span>  
       <span className={`w-[150px] truncate`}>{usage}</span>
       <span className="w-[160px] truncate">{username}</span>
