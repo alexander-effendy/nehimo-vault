@@ -1,22 +1,15 @@
-// importing BASICs
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-// importing fake data
 
-// importing tsx components
 import Header from "./component/Header";
 import CategoryList from "./component/category/CategoryList";
 import CategoryContent from "./component/category/CategoryContent";
 
-// importing CSS
 import "./App.css";
 
-// importing icons
 import { TfiLock } from "react-icons/tfi";
 import AddCategoryModal from "./component/modal/CategoryAddModal";
-
-// ################################################################################################## //
 
 const LockedOverlay = () => {
   return (
@@ -28,9 +21,7 @@ const LockedOverlay = () => {
 
 const ModalOverlay = () => {
   return (
-    <div className="absolute w-screen h-screen bg-black opacity-80 z-200 flex items-center justify-center">
-    
-    </div>
+    <div className="absolute w-screen h-screen bg-black opacity-80 z-200 flex items-center justify-center" />
   )
 }
 

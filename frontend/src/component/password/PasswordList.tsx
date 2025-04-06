@@ -116,7 +116,7 @@ const PasswordList = () => {
         <span className="ml-[115px]">Created</span>
       </section>
       {/* map the list of passwords here (within a password list) */}
-      <section className="flex flex-col mt-3">
+      <section className="flex flex-col mt-3 overflow-y-auto h-[340px]">
         {passwordsByCategory.map((password, index) => (
           <PasswordComponent
             key={password.id}
