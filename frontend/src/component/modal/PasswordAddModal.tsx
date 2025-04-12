@@ -36,7 +36,7 @@ const AddPasswordModal = () => {
   return (
     <Dialog open={addPasswordModalOpen} onClose={() => handleModalOpen(false)} className="relative z-280">
       <div className="fixed inset-0 flex w-screen items-center justify-center">
-        <DialogPanel className="max-w-lg border border-gray-700 bg-black text-white rounded-[10px] w-[300px]">
+        <DialogPanel className="max-w-lg border border-gray-700 bg-black text-white rounded-[10px] w-[420px]">
           <DialogTitle className="flex items-center justify-center py-3 font-bold mb-2 border-b-[1px] border-gray-700">Add Password</DialogTitle>
           <section className="flex flex-col gap-2 text-[14px] p-4">
           <input
@@ -59,7 +59,7 @@ const AddPasswordModal = () => {
             <button className="text-[13px] px-2 py-1 border-[1px] rounded-[5px] w-[100px] hover:cursor-pointer hover:bg-slate-700 border-gray-600" onClick={() => handleModalOpen(false)}>
               Cancel
             </button>
-            <button className="text-[13px] px-2 py-1 rounded-[5px] w-[100px] hover:cursor-pointer bg-red-700 hover:bg-red-900" onClick={() => handleAddPassword()}>
+            <button className="text-[13px] px-2 py-1 rounded-[5px] w-[100px] hover:cursor-pointer bg-blue-500 hover:bg-blue-600" onClick={() => handleAddPassword()}>
               Add
             </button>
           </div>

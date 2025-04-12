@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { categoryChooseHighestId } from "../../utils/CategoryUtils";
 
-import { addCategoryAPI } from "../../api/CategoryAPI";
+import { addCategoryAPI } from "../../api/categoryAPI";
 
 const AddCategoryModal = () => {
   const dispatch = useDispatch();
@@ -43,7 +43,6 @@ const AddCategoryModal = () => {
 
     const nc = await addCategoryAPI(newCategoryAPI);
     dispatch(addCategory(nc));
-
     handleModalOpen(false);
   };
 

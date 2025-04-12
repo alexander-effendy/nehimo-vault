@@ -33,10 +33,9 @@ const App = () => {
         size={15}
         className="z-330 hover:cursor-pointer text-white absolute top-3 right-3 transition-all duration-1000 hover:text-yellow-300 "
       />
-
       <AddCategoryModal />
       {(addCategoryModalOpen || deleteCategoryModalOpen || addPasswordModalOpen) && <ModalOverlay />}
-      {isLocked && <LockedOverlay />}
+      {/* {isLocked && <LockedOverlay />} */}
       <CategoryList />
       <CategoryContent />
     </div>
