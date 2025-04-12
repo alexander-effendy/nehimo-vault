@@ -51,10 +51,22 @@ def get_passwords(db: Session, skip: int = 0, limit: int = 100):
 def get_passwords_by_category(db: Session, category_id: int):
     return db.query(models.Password).filter(models.Password.categoryid == category_id).all()
 
+# GET SPECIFIC PASSWORD
+def get_password(db: Session, password_id: int):
+    return db.query(models.Password).filter(models.Password.id == password_id).first()
+
 # POST PASSWORD
 def create_password(db: Session, password: schemas.PasswordCreate):
     db_password = models.Password(categoryid=password.categoryid, usage=password.usage, username=password.username, password=password.password)
     db.add(db_password)
     db.commit()
     db.refresh(db_password)
+    return db_password
+
+# DELETE PASSWORD
+def delete_password(db: Session, passwordId: int):
+    db_password = get_password(db, passwordId)
+    if db_password:
+        db.delete(db_password)
+        db.commit()
     return db_password

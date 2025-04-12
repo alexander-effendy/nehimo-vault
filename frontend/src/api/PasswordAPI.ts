@@ -39,3 +39,15 @@ export const addPasswordAPI = async (password: PasswordPropAPI) => {
     console.log(error);
   }
 }
+
+export const deletePasswordAPI = async (passwordId: number | null) => {
+  console.log('deleting password with id: ' + passwordId);
+  if (!passwordId) return;
+  try {
+    const response = await api.delete(`/passwords/${passwordId}`);
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}

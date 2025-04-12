@@ -87,3 +87,11 @@ def read_passwords_by_category(category_id: int, db: Session = Depends(get_db)):
 @app.post("/passwords/", response_model=schemas.PasswordResponse)
 def create_password(password: schemas.PasswordCreate, db: Session = Depends(get_db)):
     return crud.create_password(db, password)
+
+# DELETE PASSWORD
+@app.delete("/passwords/{password_id}", response_model=schemas.PasswordResponse)
+def delete_password(password_id: int, db: Session = Depends(get_db)):
+    db_password = crud.delete_password(db, password_id)
+    if db_password is None:
+        raise HTTPException(status_code=404, detail="Password not found")
+    return db_password

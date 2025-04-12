@@ -14,6 +14,7 @@ import getDarkerColor from "../../utils/ColourGenerator";
 import { formatCreatedDate } from "../../utils/date";
 import { categoryChooser } from "../../utils/CategoryUtils";
 import AddPasswordModal from "../modal/PasswordAddModal";
+import UpdatePasswordModal from "../modal/PasswordUpdateModal";
 
 const CategoryContent = () => {
   const selectedCategory = useSelector((state: RootState) => state.category.selectedCategoryId);
@@ -76,6 +77,7 @@ const CategoryContent = () => {
       {/* HEADER */}
       <DeleteCategoryModal />
       <AddPasswordModal />
+      <UpdatePasswordModal />
       <section
         style={{
           background: `linear-gradient(to bottom, ${baseColor} 0%, ${getDarkerColor(baseColor, 0.18)} 40%, ${getDarkerColor(baseColor, 0.22)} 100%)`,

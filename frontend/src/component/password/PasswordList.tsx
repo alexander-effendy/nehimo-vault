@@ -9,7 +9,7 @@ import { RootState } from "@/store/store";
 import { useQuery } from "@tanstack/react-query";
 
 import { setDeleteCategoryModalOpen } from "../../features/CategorySlice";
-import {setAddPasswordModalOpen } from "../../features/PasswordSlice";
+import { setAddPasswordModalOpen } from "../../features/PasswordSlice";
 
 import { fetchPasswords } from "../../api/PasswordAPI";
 import { setPasswords } from "../../features/PasswordSlice";
@@ -100,7 +100,7 @@ const PasswordList = () => {
           <button className="text-gray-400 hover:text-white hover:cursor-pointer">
             <IoIosSearch size={20} />
           </button>
-          <button className="flex gap-1 flex items-center text-gray-400 gap-2 text-[12px]">
+          <button className="flex items-center text-gray-400 gap-2 text-[12px]">
             <span>Sort by</span><FaListUl/>
           </button>
         </section>
@@ -120,7 +120,8 @@ const PasswordList = () => {
         {passwordsByCategory.map((password, index) => (
           <PasswordComponent
             key={password.id}
-            id={index + 1}
+            idx={index + 1}
+            id={password.id}
             categoryid={password.categoryid}
             usage={password.usage}
             username={password.username}
