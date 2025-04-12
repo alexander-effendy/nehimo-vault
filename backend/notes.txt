@@ -1,0 +1,32 @@
+# Notes
+
+## Project Overview
+- Project Name: Nehimo Vault
+- Directory: `/Users/z5289605/Documents/Project/nehimo-vault/backend`
+
+## Backend Notes
+- Ensure all API endpoints are documented.
+- Follow consistent coding standards.
+- Use environment variables for sensitive data.
+
+## To-Do
+1. Set up database schema.
+2. Implement authentication.
+3. Write unit tests for core functionality.
+
+## References
+- [Project Documentation](../docs/README.md)
+- [API Design Guidelines](../docs/api-guidelines.md)
+
+## Miscellaneous
+- Remember to update this file regularly with new notes or changes.
+
+
+pg_restore \
+  --verbose \
+  --clean \
+  --no-owner \
+  --create \
+  -U z5289605 \
+  -d postgres \
+  ~/Downloads/nehimo_vault_db-11-apr-2025.pgdump
