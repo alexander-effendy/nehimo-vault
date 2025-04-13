@@ -8,7 +8,7 @@ import { formatCreatedDate } from "../../utils/date";
 import { PiDotsThreeOutlineLight } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
 
-const PasswordComponent: React.FC<PasswordComponentProp> = ({ id, idx, categoryid, usage, username, password, date_created, last_edited}) => {
+const PasswordComponent: React.FC<PasswordComponentProp> = ({ id, idx, categoryid, usage, username, password, date_created}) => {
   const dispatch = useDispatch();
   const passwords = useSelector((state: RootState) => state.password.passwords);
 

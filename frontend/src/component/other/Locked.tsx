@@ -3,7 +3,6 @@ import { useState } from "react";
 // icons
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
-import { FaApple } from "react-icons/fa";
 
 import catmeme from '../../assets/catmeme.png';
 

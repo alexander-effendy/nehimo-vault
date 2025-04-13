@@ -11,7 +11,7 @@ export interface CategoryComponentProp {
   colour: string;
 }
 
-interface CategoryState {
+export interface CategoryState {
   categories: CategoryComponentProp[];
   selectedCategoryId: number | null;
   selectedCategoryObject: CategoryComponentProp | null;

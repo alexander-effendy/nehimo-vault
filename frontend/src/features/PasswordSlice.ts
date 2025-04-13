@@ -11,7 +11,7 @@ export interface PasswordComponentProp {
   last_edited: string;
 }
 
-interface PasswordState {
+export interface PasswordState {
   passwords: PasswordComponentProp[];
   addPasswordModalOpen: boolean;
   updatePasswordModalOpen: boolean;
