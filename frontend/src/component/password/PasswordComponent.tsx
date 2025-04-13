@@ -1,6 +1,5 @@
 import { PasswordComponentProp, setUpdatePasswordModalOpen, setSelectedPasswordObject } from "../../features/PasswordSlice";
 import { passwordChooser } from "../../utils/PasswordUtils";
-import { deletePasswordAPI } from "../../api/PasswordAPI";
 
 import { RootState } from "@/store/store";
 
@@ -18,12 +17,9 @@ const PasswordComponent: React.FC<PasswordComponentProp> = ({ id, idx, categoryi
   const handleUpdatePassword = async (id: number) => {
     const sp = passwordChooser(passwords, id);
     dispatch(setSelectedPasswordObject(sp));
-    // set update modal open
     dispatch(setUpdatePasswordModalOpen(true))
-    // set currently selected password
-    const res = await deletePasswordAPI(id);
-    console.log(res);
   }
+
   return (
     <div key={categoryid} className="shrink-0 relative flex items-center h-[40px] text-[11px] text-gray-500 px-[34px]">
       <span className="w-[25px]">{idx}</span>  

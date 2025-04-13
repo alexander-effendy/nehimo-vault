@@ -2,6 +2,7 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 
+import { deletePasswordAPI } from "../../api/PasswordAPI";
 import { setUpdatePasswordModalOpen, setPasswords } from "../../features/PasswordSlice";
 import { useEffect, useState } from "react";
 
@@ -20,16 +21,29 @@ const UpdatePasswordModal = () => {
     dispatch(setUpdatePasswordModalOpen(status));
   };
 
-  const handleDeletePassword = () => {
-    console.log('deleting password with id: ' + selectedPasswordObject?.id || null);
-
-    // update remove password with current id from the password redux store first!
+  const handleDeletePassword = async () => {
     const updatedPasswords = passwords.filter((password) => password.id !== selectedPasswordObject?.id);
     dispatch(setPasswords(updatedPasswords));
+    if (selectedPasswordObject) await deletePasswordAPI(selectedPasswordObject?.id);
+    handleModalOpen(false);
+  }
+
+  const handleUpdatePassword = () => {
+    console.log(passwords);
+    console.log('updating password with id:' + selectedPasswordObject?.id || null);
+    console.log(passwordUsageInput, passwordUsernameInput, passwordPasswordInput);
+
+    const updatedPasswords = passwords.map((password) => password.id === selectedPasswordObject?.id ? {...password, usage: passwordUsageInput, username: passwordUsernameInput, password: passwordPasswordInput } : password);
+
+    console.log(updatedPasswords);
+
+    dispatch(setPasswords(updatedPasswords));
+    // call the update api
     handleModalOpen(false);
   }
 
   useEffect(() => {
+    console.log(passwords)
     setPasswordUsageInput(selectedPasswordObject?.usage || '');
     setPasswordUsernameInput(selectedPasswordObject?.username || '');
     setPasswordPasswordInput(selectedPasswordObject?.password || '');
@@ -39,7 +53,7 @@ const UpdatePasswordModal = () => {
     <Dialog open={updatePasswordModalOpen} onClose={() => handleModalOpen(false)} className="relative z-280">
       <div className="fixed inset-0 flex w-screen items-center justify-center">
         <DialogPanel className="max-w-lg border border-gray-700 bg-black text-white rounded-[10px] w-[420px]">
-          <DialogTitle className="flex items-center justify-center py-3 font-bold mb-2 border-b-[1px] border-gray-700">Add Password</DialogTitle>
+          <DialogTitle className="flex items-center justify-center py-3 font-bold mb-2 border-b-[1px] border-gray-700">Update Password</DialogTitle>
           <section className="flex flex-col gap-2 text-[14px] p-4">
           <input
             value={passwordUsageInput || ''}
@@ -64,14 +78,15 @@ const UpdatePasswordModal = () => {
             <button className="text-[13px] px-2 py-1 border-[1px] rounded-[5px] w-[100px] hover:cursor-pointer hover:bg-slate-700 border-gray-600" onClick={() => handleModalOpen(false)}>
               Cancel
             </button>
-            <button className="text-[13px] px-2 py-1 rounded-[5px] w-[100px] hover:cursor-pointer bg-blue-500 hover:bg-blue-600">
-              Update
-            </button>
-
             <button 
               onClick={() => handleDeletePassword()}
               className="text-[13px] px-2 py-1 rounded-[5px] w-[100px] hover:cursor-pointer bg-red-500 hover:bg-red-600">
               Delete
+            </button>
+            <button 
+              onClick={() => handleUpdatePassword()}
+              className="text-[13px] px-2 py-1 rounded-[5px] w-[100px] hover:cursor-pointer bg-blue-500 hover:bg-blue-600">
+              Update
             </button>
           </div>
         </DialogPanel>
