@@ -70,3 +70,13 @@ def delete_password(db: Session, passwordId: int):
         db.delete(db_password)
         db.commit()
     return db_password
+
+# UPDATE PASSWORD
+def update_password(db: Session, password_id: int, password_update: schemas.PasswordUpdate):
+    db_password = db.query(models.Password).filter(models.Password.id == password_id).first();
+    if db_password:
+        for field, value in password_update.dict(exclude_unset=True).items():
+            setattr(db_password, field, value)
+        db.commit()
+        db.refresh(db_password)
+    return db_password

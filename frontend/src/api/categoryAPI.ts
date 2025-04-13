@@ -43,7 +43,7 @@ export const addCategoryAPI = async (category: CategoryPropAPI) => {
 
 export const updateCategoryAPI = async (category: CategoryUpdatePropAPI) => {
   try {
-    const response = await api.patch(`/categories/${category.id}`, {
+    const response = await api.put(`/categories/${category.id}`, {
       name: category.name,
       type: category.type,
       icon: category.icon,

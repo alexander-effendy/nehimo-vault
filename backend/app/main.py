@@ -50,7 +50,7 @@ def read_category(category_id: int, db: Session = Depends(get_db)):
     return db_category
 
 # UPDATE CATEGORY
-@app.patch("/categories/{category_id}", response_model=schemas.CategoryResponse)
+@app.put("/categories/{category_id}", response_model=schemas.CategoryResponse)
 def update_category(category_id: int, category_update: schemas.CategoryCreate, db: Session = Depends(get_db)):
     db_category = crud.update_category(db, category_id, category_update)
     if db_category is None:
@@ -92,6 +92,14 @@ def create_password(password: schemas.PasswordCreate, db: Session = Depends(get_
 @app.delete("/passwords/{password_id}", response_model=schemas.PasswordResponse)
 def delete_password(password_id: int, db: Session = Depends(get_db)):
     db_password = crud.delete_password(db, password_id)
+    if db_password is None:
+        raise HTTPException(status_code=404, detail="Password not found")
+    return db_password
+
+# UPDATE PASSWORD
+@app.put("/passwords/{password_id}", response_model=schemas.PasswordResponse)
+def update_password(password_update: schemas.PasswordUpdate, db: Session = Depends(get_db)):
+    db_password = crud.update_password(db, password_id=password_update.passwordid, password_update=password_update)
     if db_password is None:
         raise HTTPException(status_code=404, detail="Password not found")
     return db_password

@@ -7,6 +7,13 @@ interface PasswordPropAPI {
   password: string | null;
 }
 
+interface PasswordUpdatePropAPI {
+  id: number | null | undefined;
+  usage: string | null;
+  username: string | null;
+  password: string | null;
+}
+
 export const fetchPasswords = async () => {
   try {
     const response = await api.get('/passwords/');
@@ -35,6 +42,21 @@ export const addPasswordAPI = async (password: PasswordPropAPI) => {
     });
     console.log(response);
     return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const updatePasswordAPI = async (password: PasswordUpdatePropAPI) => {
+  console.log(password);
+  try {
+    const response = await api.put(`/passwords/${password.id}`, {
+      passwordid: password.id,
+      usage: password.usage,
+      username: password.username,
+      password: password.password,
+    })
+    return response;
   } catch (error) {
     console.log(error);
   }

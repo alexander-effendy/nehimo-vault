@@ -48,3 +48,8 @@ class PasswordResponse(PasswordBase):
     class Config:
         orm_mode = True
 
+class PasswordUpdate(BaseModel):
+    passwordid: int
+    usage: Optional[str] = None
+    username: Optional[str] = None
+    password: Optional[str] = None

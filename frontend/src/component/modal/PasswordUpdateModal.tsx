@@ -2,7 +2,7 @@ import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 
-import { deletePasswordAPI } from "../../api/PasswordAPI";
+import { deletePasswordAPI, updatePasswordAPI } from "../../api/PasswordAPI";
 import { setUpdatePasswordModalOpen, setPasswords } from "../../features/PasswordSlice";
 import { useEffect, useState } from "react";
 
@@ -28,22 +28,30 @@ const UpdatePasswordModal = () => {
     handleModalOpen(false);
   }
 
-  const handleUpdatePassword = () => {
-    console.log(passwords);
-    console.log('updating password with id:' + selectedPasswordObject?.id || null);
-    console.log(passwordUsageInput, passwordUsernameInput, passwordPasswordInput);
+  const handleUpdatePassword = async () => {
 
-    const updatedPasswords = passwords.map((password) => password.id === selectedPasswordObject?.id ? {...password, usage: passwordUsageInput, username: passwordUsernameInput, password: passwordPasswordInput } : password);
-
-    console.log(updatedPasswords);
+    // const updatedPasswords = passwords.map((password) => password.id === selectedPasswordObject?.id ? {...password, usage: passwordUsageInput, username: passwordUsernameInput, password: passwordPasswordInput } : password);
+    let updatedPasswordObject = null;
+    const updatedPasswords = passwords.map((password) => {
+      if (password.id === selectedPasswordObject?.id) {
+        const updated = {
+          ...password,
+          usage: passwordUsageInput,
+          username: passwordUsernameInput,
+          password: passwordPasswordInput,
+        };
+        updatedPasswordObject = updated;
+        return updated;
+      }
+      return password;
+    });
 
     dispatch(setPasswords(updatedPasswords));
-    // call the update api
+    if (updatedPasswordObject) await updatePasswordAPI(updatedPasswordObject);
     handleModalOpen(false);
   }
 
   useEffect(() => {
-    console.log(passwords)
     setPasswordUsageInput(selectedPasswordObject?.usage || '');
     setPasswordUsernameInput(selectedPasswordObject?.username || '');
     setPasswordPasswordInput(selectedPasswordObject?.password || '');
