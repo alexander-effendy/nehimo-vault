@@ -4,14 +4,12 @@ import { RootState } from "@/store/store";
 import { setAddCategoryModalOpen, addCategory } from "../../features/CategorySlice";
 import { useState } from "react";
 
-import { categoryChooseHighestId } from "../../utils/CategoryUtils";
-
-import { addCategoryAPI } from "../../api/categoryAPI";
+import { addCategoryAPI } from "../../api/CategoryAPI";
 
 const AddCategoryModal = () => {
   const dispatch = useDispatch();
   const addCategoryModalOpen = useSelector((state: RootState) => state.category.addCategoryModalOpen);
-  const categories = useSelector((state: RootState) => state.category.categories);
+  // const categories = useSelector((state: RootState) => state.category.categories);
 
   const [categoryNameInput, setCategoryNameInput] = useState<string | null>(null);
   const [categoryTypeInput, setCategoryTypeInput] = useState<string | null>(null);
@@ -24,14 +22,14 @@ const AddCategoryModal = () => {
       return;
     }
 
-    const newCategory = {
-      name: categoryNameInput,
-      type: categoryTypeInput,
-      icon: null,
-      id: categories.length + 1,
-      date_created: new Date().toISOString(),
-      colour: "#bdbdbd",
-    };
+    // const newCategory = {
+    //   name: categoryNameInput,
+    //   type: categoryTypeInput,
+    //   icon: null,
+    //   id: categories.length + 1,
+    //   date_created: new Date().toISOString(),
+    //   colour: "#bdbdbd",
+    // };
     // dispatch(addCategory(newCategory));
 
     const newCategoryAPI = {
